@@ -26,7 +26,9 @@ import { siteConfig } from '#shared/data/site'
   position: sticky;
   top: 0;
   z-index: 10;
-  background: var(--color-bg);
+  background: color-mix(in srgb, var(--color-bg) 78%, transparent);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
   border-bottom: 1px solid var(--color-line-soft);
 }
 
