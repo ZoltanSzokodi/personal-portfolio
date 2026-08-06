@@ -23,8 +23,10 @@ import { siteConfig } from '#shared/data/site'
 
 <style scoped>
 .site-header {
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 10;
+  background: var(--color-bg);
   border-bottom: 1px solid var(--color-line-soft);
 }
 
