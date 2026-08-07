@@ -7,7 +7,7 @@ export const siteConfig = {
   description:
     'React Native software engineer building reliable mobile products and exploring the Vue and Nuxt ecosystem.',
   location: 'Your location',
-  availability: 'Open to software engineering opportunities',
+  availability: 'Open for hire',
   contacts: [
     {
       label: 'Email',

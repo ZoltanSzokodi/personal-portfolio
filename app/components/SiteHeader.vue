@@ -444,6 +444,7 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 0.42rem;
   color: var(--color-muted);
+  font-family: var(--font-mono);
   font-size: 0.8rem;
   font-weight: bold;
   line-height: 1;
