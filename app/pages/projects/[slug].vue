@@ -39,8 +39,8 @@ useHead({ link: [{ rel: 'canonical', href: canonicalUrl }] })
   <article>
     <header class="project-hero section">
       <div class="container">
-        <NuxtLink class="back-link" to="/#work"
-          ><span aria-hidden="true">←</span> All work</NuxtLink
+        <NuxtLink class="back-link" to="/#projects"
+          ><span aria-hidden="true">←</span> All projects</NuxtLink
         >
 
         <div class="project-heading">

@@ -46,8 +46,8 @@ useHead({
           </p>
 
           <div class="button-row">
-            <NuxtLink class="button button--primary" :to="{ path: '/', hash: '#work' }">
-              View selected work
+            <NuxtLink class="button button--primary" :to="{ path: '/', hash: '#projects' }">
+              View selected project
               <span aria-hidden="true">↓</span>
             </NuxtLink>
             <NuxtLink class="button button--secondary" :to="{ path: '/', hash: '#contact' }">
@@ -76,12 +76,12 @@ useHead({
       </div>
     </section>
 
-    <section id="work" class="section section--bordered" aria-labelledby="work-title">
+    <section id="projects" class="section section--bordered" aria-labelledby="projects-title">
       <div class="container">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">01 / Selected work</p>
-            <h2 id="work-title">Projects shaped by real product constraints.</h2>
+            <p class="eyebrow">01 / Selected project</p>
+            <h2 id="projects-title">Projects shaped by real product constraints.</h2>
           </div>
           <p>
             A few case studies showing how I approach technical trade-offs, resilient interfaces,
