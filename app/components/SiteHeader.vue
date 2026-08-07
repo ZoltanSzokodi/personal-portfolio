@@ -242,7 +242,7 @@ onBeforeUnmount(() => {
 
       <nav class="desktop-nav" aria-label="Primary navigation">
         <ul class="nav-list">
-          <li v-for="item in navItems" :key="item.label">
+          <li v-for="(item, index) in navItems" :key="item.label">
             <NuxtLink
               v-if="item.sectionId"
               class="nav-link"
@@ -251,11 +251,15 @@ onBeforeUnmount(() => {
               :aria-current="activeSection === item.sectionId ? 'location' : undefined"
               @click="selectSection(item.sectionId)"
             >
-              {{ item.label }}
+              <span class="nav-number">{{ String(index + 1).padStart(2, '0') }}</span>
+              <span>{{ item.label }}</span>
             </NuxtLink>
             <span v-else class="nav-link nav-link--placeholder" aria-disabled="true">
-              {{ item.label }}
-              <span class="visually-hidden"> — coming soon</span>
+              <span class="nav-number">{{ String(index + 1).padStart(2, '0') }}</span>
+              <span>
+                {{ item.label }}
+                <span class="visually-hidden"> — coming soon</span>
+              </span>
             </span>
           </li>
         </ul>
@@ -395,14 +399,26 @@ onBeforeUnmount(() => {
 }
 
 .nav-link {
+  --nav-animation-duration: 220ms;
+
   position: relative;
   min-height: 2.75rem;
   display: inline-flex;
   align-items: center;
+  gap: 0.42rem;
   color: var(--color-muted);
-  font-size: 0.9rem;
-  font-weight: 650;
+  font-size: 0.8rem;
+  font-weight: bold;
+  line-height: 1;
   text-decoration: none;
+}
+
+.nav-number {
+  color: color-mix(in srgb, var(--color-muted) 48%, var(--color-bg));
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  transition: color var(--nav-animation-duration) ease;
 }
 
 .nav-link::after {
@@ -411,11 +427,11 @@ onBeforeUnmount(() => {
   right: 0;
   bottom: 0.4rem;
   left: 0;
-  height: 1px;
+  height: 1.5px;
   background: var(--color-accent);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 220ms ease;
+  transition: transform var(--nav-animation-duration) ease;
 }
 
 .nav-link:hover,
@@ -428,6 +444,11 @@ onBeforeUnmount(() => {
   transform: scaleX(1);
 }
 
+.nav-link:hover .nav-number,
+.nav-link--active .nav-number {
+  color: var(--color-accent);
+}
+
 .nav-link--placeholder {
   opacity: 0.52;
   cursor: default;
@@ -435,6 +456,10 @@ onBeforeUnmount(() => {
 
 .nav-link--placeholder:hover {
   color: var(--color-muted);
+}
+
+.nav-link--placeholder:hover .nav-number {
+  color: color-mix(in srgb, var(--color-muted) 48%, var(--color-bg));
 }
 
 .nav-link--placeholder::after {
@@ -565,6 +590,7 @@ onBeforeUnmount(() => {
   font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.04em;
+  transition: color 160ms ease;
 }
 
 .mobile-nav-link:hover,
@@ -572,6 +598,7 @@ onBeforeUnmount(() => {
   color: var(--color-bg);
 }
 
+.mobile-nav-link:hover .mobile-nav-number,
 .mobile-nav-link--active .mobile-nav-number {
   color: #83d7b7;
 }
@@ -598,7 +625,9 @@ onBeforeUnmount(() => {
 
 @media (prefers-reduced-motion: reduce) {
   .nav-link::after,
-  .mobile-nav-link {
+  .nav-number,
+  .mobile-nav-link,
+  .mobile-nav-number {
     transition: none;
   }
 }
