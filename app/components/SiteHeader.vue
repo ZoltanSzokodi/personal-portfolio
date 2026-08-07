@@ -21,6 +21,7 @@ const NAVIGATION_UNLOCK_SAFETY_DELAY = 2000
 
 const route = useRoute()
 const activeSection = ref<SectionId | null>(null)
+const scrollProgress = ref(0)
 const menuButton = ref<HTMLButtonElement | null>(null)
 const mobileMenuDialog = ref<HTMLDialogElement | null>(null)
 const isMobileMenuOpen = ref(false)
@@ -33,8 +34,20 @@ let isMobileMenuClosing = false
 let shouldRestoreMenuButtonFocus = true
 let desktopMediaQuery: MediaQueryList | undefined
 
+const updateScrollProgress = () => {
+  const scrollableDistance = document.documentElement.scrollHeight - window.innerHeight
+
+  if (scrollableDistance <= 0) {
+    scrollProgress.value = 0
+    return
+  }
+
+  scrollProgress.value = Math.min(Math.max(window.scrollY / scrollableDistance, 0), 1)
+}
+
 const updateActiveSection = () => {
   animationFrame = undefined
+  updateScrollProgress()
 
   if (lockedSection) {
     activeSection.value = lockedSection
@@ -234,6 +247,10 @@ onBeforeUnmount(() => {
 
 <template>
   <header class="site-header">
+    <div class="scroll-progress" aria-hidden="true">
+      <span class="scroll-progress-bar" :style="{ transform: `scaleX(${scrollProgress})` }" />
+    </div>
+
     <div class="container header-inner">
       <NuxtLink class="brand" to="/" :aria-label="`${siteConfig.name}, home`">
         <span class="brand-mark" aria-hidden="true">{{ siteConfig.initials }}</span>
@@ -346,6 +363,26 @@ onBeforeUnmount(() => {
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
   border-bottom: 1px solid var(--color-line-soft);
+}
+
+.scroll-progress {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 2px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--color-line) 72%, transparent);
+  pointer-events: none;
+}
+
+.scroll-progress-bar {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: var(--color-accent);
+  transform-origin: left;
+  will-change: transform;
 }
 
 .header-inner {
