@@ -46,14 +46,16 @@ useHead({
 <template>
   <div>
     <section class="hero section" aria-labelledby="hero-title">
-      <div class="container hero-shell">
+      <!-- <div class="container hero-shell"> -->
+      <div class="container hero">
         <div class="hero-meta">
           <p>{{ siteConfig.name }}</p>
           <p class="hero-meta-type"><span aria-hidden="true" /> Portfolio</p>
         </div>
 
         <div class="hero-grid">
-          <div class="hero-copy">
+          <!-- <div class="hero-copy"> -->
+          <div>
             <p class="availability-chip">
               <span class="availability-dot" aria-hidden="true" />
               {{ siteConfig.availability }}
@@ -216,15 +218,14 @@ useHead({
 <style scoped>
 .hero {
   --hero-top-space: clamp(1.25rem, 2.5vh, 2rem);
-
   min-height: calc(100svh - 4rem);
   display: grid;
-  position: relative;
+  /* position: relative; */
   overflow: hidden;
   padding-block: var(--hero-top-space) 0;
 }
 
-.hero::before {
+/* .hero::before {
   content: '';
   width: min(52rem, 85vw);
   height: min(52rem, 85vw);
@@ -234,20 +235,20 @@ useHead({
   border-radius: 50%;
   background: radial-gradient(circle, rgb(8 127 91 / 14%), transparent 68%);
   pointer-events: none;
-}
+} */
 
-.hero-shell {
+/* .hero-shell {
   min-height: calc(100svh - 4rem - var(--hero-top-space));
   display: grid;
   grid-template-rows: auto 1fr auto;
-}
+} */
 
 .hero-meta {
   min-height: 2.5rem;
   display: flex;
-  align-items: flex-start;
+  /* align-items: flex-start; */
   justify-content: space-between;
-  gap: 2rem;
+  /* gap: 2rem; */
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--color-line);
   color: var(--color-muted);
@@ -258,9 +259,9 @@ useHead({
   text-transform: uppercase;
 }
 
-.hero-meta p {
+/* .hero-meta p {
   margin: 0;
-}
+} */
 
 .hero-meta-type {
   display: inline-flex;
@@ -284,9 +285,9 @@ useHead({
   padding-block: clamp(1.5rem, 3vh, 3rem);
 }
 
-.hero-copy {
+/* .hero-copy {
   max-width: 48rem;
-}
+} */
 
 .availability-chip {
   width: fit-content;
@@ -295,12 +296,12 @@ useHead({
   gap: 0.6rem;
   margin: 0;
   padding: 0.6rem 0.9rem;
-  border: 1px solid color-mix(in srgb, var(--color-accent) 48%, var(--color-line));
+  border: 1px solid var(--color-accent);
   border-radius: 999px;
-  background: color-mix(in srgb, var(--color-accent-soft) 58%, transparent);
+  background: color-mix(in srgb, var(--color-accent-soft) 50%, transparent);
   color: var(--color-accent-dark);
-  font-size: 0.78rem;
-  font-weight: 750;
+  font-size: 0.7rem;
+  font-weight: bold;
 }
 
 .hero-kicker {
@@ -626,14 +627,17 @@ h1 span {
 
 @keyframes availability-pulse {
   0% {
-    opacity: 0.75;
+    opacity: 0.5;
     transform: scale(0.75);
+    background-color: var(--color-accent);
   }
-
-  72%,
+  50% {
+    opacity: 0.25;
+    transform: scale(1);
+  }
   100% {
     opacity: 0;
-    transform: scale(2.2);
+    transform: scale(1.25);
   }
 }
 
