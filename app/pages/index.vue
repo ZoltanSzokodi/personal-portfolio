@@ -97,14 +97,14 @@ useHead({
             <div class="hero-clients" aria-labelledby="hero-clients-title">
               <p id="hero-clients-title" class="hero-detail-label">Shipped production apps for…</p>
               <ul aria-label="Client logos">
-                <li><ArdPlusLogo class="client-logo" title="ARD Plus" /></li>
-                <li><BookwireLogo class="client-logo" title="Bookwire" /></li>
-                <li><FlexgoldLogo class="client-logo" title="Flexgold" /></li>
+                <li><ArdPlusLogo class="client-logo--ardplus" title="ARD Plus" /></li>
+                <li><BookwireLogo class="client-logo--bookwire" title="Bookwire" /></li>
+                <li><FlexgoldLogo class="client-logo--flexgold" title="Flexgold" /></li>
                 <li>
-                  <LeonineLogo class="client-logo client-logo--leonine" title="Leonine Studios" />
+                  <LeonineLogo class="client-logo--leonine" title="Leonine Studios" />
                 </li>
-                <li><NetzkinoLogo class="client-logo" title="Netzkino" /></li>
-                <li><SolitLogo class="client-logo client-logo--solit" title="Solit" /></li>
+                <li><NetzkinoLogo class="client-logo-netzkino" title="Netzkino" /></li>
+                <li><SolitLogo class="client-logo--solit" title="Solit" /></li>
               </ul>
             </div>
           </div>
@@ -469,32 +469,36 @@ h1 span {
 
 .hero-clients ul {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   align-items: center;
-  gap: 1rem;
-  margin: 1.1rem 0 0;
+  gap: 2rem;
+  /* margin: 1.1rem 0 0; */
   padding: 0;
   list-style: none;
 }
 
 .hero-clients li {
-  min-width: 0;
+  /* min-width: 0; */
 }
 
 .client-logo {
-  width: 100%;
-  height: 3.25rem;
-  padding: 0.5rem;
+  /* width: 100%; */
+  /* height: 3.25rem; */
+  /* padding: 0.5rem; */
 }
 
+.client-logo--ardplus {
+}
+.client-logo--bookwire {
+}
+.client-logo--flexgold {
+}
 .client-logo--leonine {
-  border-radius: 0.45rem;
-  /* background: #17201d; */
 }
-
-.client-logo--leonine,
+.client-logo--netzkino {
+}
 .client-logo--solit {
-  height: 4rem;
+  /* height: 4rem; */
 }
 
 .profile-card {
