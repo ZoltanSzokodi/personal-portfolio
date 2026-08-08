@@ -93,7 +93,6 @@ useHead({
                 CV / Resume
               </button>
             </div>
-
           </div>
 
           <figure class="profile-card">
@@ -473,20 +472,10 @@ h1 span {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   align-items: center;
-  gap: 2rem;
+  gap: 4rem;
   /* margin: 1.1rem 0 0; */
   padding: 0;
   list-style: none;
-}
-
-.hero-clients li {
-  /* min-width: 0; */
-}
-
-.client-logo {
-  /* width: 100%; */
-  /* height: 3.25rem; */
-  /* padding: 0.5rem; */
 }
 
 .client-logo--ardplus {
@@ -812,6 +801,32 @@ h1 span {
     gap: 3.5rem;
   }
 
+  .hero-clients ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem clamp(2.5rem, 7vw, 4rem);
+  }
+
+  .hero-clients li {
+    display: grid;
+    min-width: 0;
+    place-items: center;
+  }
+
+  .hero-clients li > svg {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: clamp(1.25rem, 3.5vw, 1.75rem);
+  }
+
+  .hero-clients li > .client-logo--leonine {
+    height: clamp(2rem, 5vw, 2.5rem);
+  }
+
+  .hero-clients li > .client-logo--solit {
+    height: clamp(3rem, 10vw, 5rem);
+  }
+
   .profile-card {
     width: min(100%, 28rem);
     justify-self: start;
@@ -828,11 +843,6 @@ h1 span {
 }
 
 @media (max-width: 45rem) {
-  .hero-clients ul {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem 1.5rem;
-  }
-
   .hero-footer {
     align-items: flex-start;
     flex-direction: column;
