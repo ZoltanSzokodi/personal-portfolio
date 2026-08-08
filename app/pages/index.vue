@@ -21,7 +21,6 @@ const heroStats = [
   { value: '250+', label: 'Production releases' },
 ] as const
 
-const heroClients = ['ARDPLUS', 'Solit', 'flexgold', 'LEONINE'] as const
 const heroContactOrder = ['GitHub', 'LinkedIn', 'Email'] as const
 const heroContacts = heroContactOrder.flatMap((label) => {
   const contact = siteConfig.contacts.find((item) => item.label === label)
@@ -97,8 +96,15 @@ useHead({
 
             <div class="hero-clients" aria-labelledby="hero-clients-title">
               <p id="hero-clients-title" class="hero-detail-label">Shipped production apps for…</p>
-              <ul aria-label="Client logo placeholders">
-                <li v-for="client in heroClients" :key="client">{{ client }}</li>
+              <ul aria-label="Client logos">
+                <li><ArdPlusLogo class="client-logo" title="ARD Plus" /></li>
+                <li><BookwireLogo class="client-logo" title="Bookwire" /></li>
+                <li><FlexgoldLogo class="client-logo" title="Flexgold" /></li>
+                <li>
+                  <LeonineLogo class="client-logo client-logo--leonine" title="Leonine Studios" />
+                </li>
+                <li><NetzkinoLogo class="client-logo" title="Netzkino" /></li>
+                <li><SolitLogo class="client-logo client-logo--solit" title="Solit" /></li>
               </ul>
             </div>
           </div>
@@ -274,7 +280,7 @@ useHead({
   width: 0.4rem;
   height: 0.4rem;
   border-radius: 50%;
-  background: var(--color-accent);
+  /* background: var(--color-accent); */
 }
 
 .hero-grid {
@@ -344,16 +350,16 @@ h1 {
 }
 
 h1 span {
-  display: block;
+  /* display: block; */
   color: var(--color-accent);
 }
 
 .hero-intro {
   max-width: 38rem;
-  margin: 0;
+  /* margin: 0; */
   color: var(--color-muted);
-  font-size: clamp(1rem, 1.8vw, 1.2rem);
-  line-height: 1.7;
+  font-size: clamp(1rem, 1.8vw, 1.5rem);
+  line-height: 1.5;
 }
 
 .hero-detail-label {
@@ -463,7 +469,7 @@ h1 span {
 
 .hero-clients ul {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: center;
   gap: 1rem;
   margin: 1.1rem 0 0;
@@ -472,10 +478,23 @@ h1 span {
 }
 
 .hero-clients li {
-  color: var(--color-muted);
-  font-size: clamp(0.72rem, 1.4vw, 0.88rem);
-  font-weight: 750;
-  letter-spacing: 0.03em;
+  min-width: 0;
+}
+
+.client-logo {
+  width: 100%;
+  height: 3.25rem;
+  padding: 0.5rem;
+}
+
+.client-logo--leonine {
+  border-radius: 0.45rem;
+  /* background: #17201d; */
+}
+
+.client-logo--leonine,
+.client-logo--solit {
+  height: 4rem;
 }
 
 .profile-card {

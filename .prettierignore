@@ -6,3 +6,11 @@ dist
 node_modules
 package-lock.json
 public/favicon.ico
+
+# Generated from optimized vendor SVG artwork
+app/components/ArdPlusLogo.vue
+app/components/BookwireLogo.vue
+app/components/FlexgoldLogo.vue
+app/components/LeonineLogo.vue
+app/components/NetzkinoLogo.vue
+app/components/SolitLogo.vue
