@@ -94,19 +94,6 @@ useHead({
               </button>
             </div>
 
-            <div class="hero-clients" aria-labelledby="hero-clients-title">
-              <p id="hero-clients-title" class="hero-detail-label">Shipped production apps for…</p>
-              <ul aria-label="Client logos">
-                <li><ArdPlusLogo class="client-logo--ardplus" title="ARD Plus" /></li>
-                <li><BookwireLogo class="client-logo--bookwire" title="Bookwire" /></li>
-                <li><FlexgoldLogo class="client-logo--flexgold" title="Flexgold" /></li>
-                <li>
-                  <LeonineLogo class="client-logo--leonine" title="Leonine Studios" />
-                </li>
-                <li><NetzkinoLogo class="client-logo-netzkino" title="Netzkino" /></li>
-                <li><SolitLogo class="client-logo--solit" title="Solit" /></li>
-              </ul>
-            </div>
           </div>
 
           <figure class="profile-card">
@@ -126,6 +113,18 @@ useHead({
               <p><span aria-hidden="true" /> {{ siteConfig.role }}</p>
             </figcaption>
           </figure>
+
+          <div class="hero-clients" aria-labelledby="hero-clients-title">
+            <p id="hero-clients-title" class="hero-detail-label">Shipped production apps for…</p>
+            <ul aria-label="Client logos">
+              <li><ArdPlusLogo class="client-logo--ardplus" title="ARD Plus" /></li>
+              <li><BookwireLogo class="client-logo--bookwire" title="Bookwire" /></li>
+              <li><FlexgoldLogo class="client-logo--flexgold" title="Flexgold" /></li>
+              <li><LeonineLogo class="client-logo--leonine" title="Leonine Studios" /></li>
+              <li><NetzkinoLogo class="client-logo-netzkino" title="Netzkino" /></li>
+              <li><SolitLogo class="client-logo--solit" title="Solit" /></li>
+            </ul>
+          </div>
         </div>
 
         <footer class="hero-footer">
@@ -287,7 +286,8 @@ useHead({
   display: grid;
   grid-template-columns: minmax(0, 1.55fr) minmax(17rem, 0.55fr);
   align-items: center;
-  gap: clamp(3rem, 9vw, 8.5rem);
+  column-gap: clamp(3rem, 9vw, 8.5rem);
+  row-gap: 0;
   padding-block: clamp(1.5rem, 3vh, 3rem);
 }
 
@@ -462,6 +462,8 @@ h1 span {
 }
 
 .hero-clients {
+  width: 100%;
+  grid-column: 1 / -1;
   margin-top: clamp(2rem, 4vw, 3rem);
   padding-top: 1.25rem;
   border-top: 1px solid var(--color-line);
