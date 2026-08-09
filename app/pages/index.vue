@@ -244,7 +244,6 @@ useHead({
   justify-content: space-between;
   /* gap: 2rem; */
   padding-bottom: 1rem;
-  border-bottom: 1px solid var(--color-line);
   color: var(--color-muted);
   font-family: var(--font-mono);
   font-size: 0.68rem;
@@ -562,7 +561,6 @@ h1 span {
   display: flex;
   align-items: center;
   gap: clamp(1.5rem, 4vw, 3rem);
-  border-top: 1px solid var(--color-line);
 }
 
 .hero-footer .hero-detail-label::before {
@@ -760,8 +758,7 @@ h1 span {
   }
 
   .profile-card {
-    width: min(100%, 28rem);
-    justify-self: start;
+    display: none;
   }
 
   .project-grid {

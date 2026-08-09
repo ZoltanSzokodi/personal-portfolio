@@ -91,7 +91,6 @@ import SolitLogo from './SVGs/SolitLogo.vue'
   grid-column: 1 / -1;
   margin-top: clamp(2rem, 4vw, 3rem);
   padding-top: 1.25rem;
-  border-top: 1px solid var(--color-line);
 }
 
 .hero-clients ul {
