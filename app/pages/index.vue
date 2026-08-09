@@ -16,6 +16,7 @@ const skills = [
 ]
 
 const heroStats = [
+  { value: '8+', label: 'Years of experience' },
   { value: '10+', label: 'Apps shipped' },
   { value: '4M+', label: 'Users reached' },
   { value: '250+', label: 'Production releases' },
@@ -411,7 +412,7 @@ h1 span {
 
 .hero-stats-list {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(1rem, 3vw, 2.5rem);
   margin: 1rem 0 0;
 }
@@ -812,6 +813,10 @@ h1 span {
 }
 
 @media (max-width: 45rem) {
+  .hero-stats-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .hero-footer {
     height: auto;
     min-height: 2rem;
