@@ -48,7 +48,7 @@ useHead({
       <!-- <div class="container hero-shell"> -->
       <div class="container hero">
         <div class="hero-meta">
-          <p>{{ siteConfig.name }}</p>
+          <p>{{ siteConfig.fullName }}</p>
           <p class="hero-meta-type"><span aria-hidden="true" /> Portfolio</p>
         </div>
 
@@ -106,7 +106,7 @@ useHead({
             </div>
             <figcaption>
               <div class="profile-identity">
-                <strong>{{ siteConfig.name }}</strong>
+                <strong>{{ siteConfig.fullName }}</strong>
                 <span>{{ siteConfig.location }}</span>
               </div>
               <p><span aria-hidden="true" /> {{ siteConfig.role }}</p>

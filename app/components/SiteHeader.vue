@@ -417,7 +417,7 @@ onBeforeUnmount(() => {
   height: 2.35rem;
   display: grid;
   place-items: center;
-  border-radius: 0.75rem;
+  border-radius: 999px;
   background: var(--color-text);
   color: var(--color-bg);
   font-family: var(--font-mono);

@@ -1,8 +1,9 @@
 import type { SiteConfig } from '../types/site'
 
 export const siteConfig = {
-  name: 'Your Name',
-  initials: 'YN',
+  name: 'Zoltan',
+  fullName: 'Zoltan Szokodi',
+  initials: 'ZS',
   role: 'Software engineer · React Native',
   description:
     'React Native software engineer building reliable mobile products and exploring the Vue and Nuxt ecosystem.',

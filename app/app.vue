@@ -4,7 +4,7 @@ import { siteConfig } from '#shared/data/site'
 const { baseURL } = useRuntimeConfig().app
 
 useHead({
-  titleTemplate: (title) => (title ? `${title} · ${siteConfig.name}` : siteConfig.name),
+  titleTemplate: (title) => (title ? `${title} · ${siteConfig.fullName}` : siteConfig.fullName),
   link: [{ rel: 'icon', href: `${baseURL}favicon.ico` }],
 })
 </script>

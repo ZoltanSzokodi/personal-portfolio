@@ -6,6 +6,7 @@ export interface ContactLink {
 
 export interface SiteConfig {
   name: string
+  fullName: string
   initials: string
   role: string
   description: string
