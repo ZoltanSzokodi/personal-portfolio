@@ -802,7 +802,7 @@ h1 span {
   }
 
   .hero-clients ul {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 2rem clamp(2.5rem, 7vw, 4rem);
   }
 
