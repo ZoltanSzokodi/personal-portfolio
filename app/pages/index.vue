@@ -132,11 +132,31 @@ useHead({
       </div>
     </section>
 
-    <section id="projects" class="section section--bordered" aria-labelledby="projects-title">
+    <section
+      id="experience"
+      class="section section--bordered placeholder-section"
+      aria-labelledby="experience-title"
+    >
       <div class="container">
+        <SectionTerminalTitle index="01" path="experience" />
+
         <div class="section-heading">
           <div>
-            <p class="eyebrow">01 / Selected project</p>
+            <p class="eyebrow">Experience</p>
+            <h2 id="experience-title">Production work, distilled.</h2>
+          </div>
+          <p>Selected roles, responsibilities, and measurable outcomes will be added here.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section section--bordered" aria-labelledby="projects-title">
+      <div class="container">
+        <SectionTerminalTitle index="02" path="projects" />
+
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Selected work</p>
             <h2 id="projects-title">Projects shaped by real product constraints.</h2>
           </div>
           <p>
@@ -156,53 +176,75 @@ useHead({
       </div>
     </section>
 
-    <section id="about" class="section section--bordered" aria-labelledby="about-title">
-      <div class="container about-grid">
-        <div>
-          <p class="eyebrow">02 / About</p>
-          <h2 id="about-title">Mobile foundations,<br />web curiosity.</h2>
+    <section id="stack" class="section section--bordered" aria-labelledby="stack-title">
+      <div class="container">
+        <SectionTerminalTitle index="03" path="stack" />
+
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">The stack</p>
+            <h2 id="stack-title">Tools I build with.</h2>
+          </div>
+          <p>A concise overview for now. More context about how I use each tool will follow.</p>
         </div>
 
-        <div class="about-copy">
-          <p class="about-lead">
-            I’ve spent most of my time building cross-platform mobile experiences with React Native.
-            This portfolio is also a learning project: a place to translate what I know about
-            components, state, performance, and UX into Vue’s ecosystem.
-          </p>
-          <p>
-            I’m drawn to teams that value clear communication, pragmatic engineering, and products
-            that respect the people using them.
-          </p>
+        <ul class="skill-list" aria-label="Skills and interests">
+          <li v-for="skill in skills" :key="skill">{{ skill }}</li>
+        </ul>
+      </div>
+    </section>
 
-          <ul class="skill-list" aria-label="Skills and interests">
-            <li v-for="skill in skills" :key="skill">{{ skill }}</li>
-          </ul>
+    <section id="about" class="section section--bordered" aria-labelledby="about-title">
+      <div class="container">
+        <SectionTerminalTitle index="04" path="about" />
+
+        <div class="about-grid">
+          <div>
+            <p class="eyebrow">About</p>
+            <h2 id="about-title">Mobile foundations,<br />web curiosity.</h2>
+          </div>
+
+          <div class="about-copy">
+            <p class="about-lead">
+              I’ve spent most of my time building cross-platform mobile experiences with React
+              Native. This portfolio is also a learning project: a place to translate what I know
+              about components, state, performance, and UX into Vue’s ecosystem.
+            </p>
+            <p>
+              I’m drawn to teams that value clear communication, pragmatic engineering, and products
+              that respect the people using them.
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="contact" class="section contact-section" aria-labelledby="contact-title">
-      <div class="container contact-grid">
-        <div>
-          <p class="eyebrow">03 / Contact</p>
-          <h2 id="contact-title">Let’s build something useful.</h2>
-        </div>
+      <div class="container">
+        <SectionTerminalTitle index="05" path="contact" inverse />
 
-        <div class="contact-copy">
-          <p>
-            I’m open to software engineering roles where I can contribute strong mobile experience,
-            grow across the stack, and work with a thoughtful team.
-          </p>
+        <div class="contact-grid">
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h2 id="contact-title">Let’s build something useful.</h2>
+          </div>
 
-          <ul class="contact-list">
-            <li v-for="contact in siteConfig.contacts" :key="contact.label">
-              <a :href="contact.href">
-                <span>{{ contact.label }}</span>
-                <strong>{{ contact.value }}</strong>
-                <span aria-hidden="true">↗</span>
-              </a>
-            </li>
-          </ul>
+          <div class="contact-copy">
+            <p>
+              I’m open to software engineering roles where I can contribute strong mobile
+              experience, grow across the stack, and work with a thoughtful team.
+            </p>
+
+            <ul class="contact-list">
+              <li v-for="contact in siteConfig.contacts" :key="contact.label">
+                <a :href="contact.href">
+                  <span>{{ contact.label }}</span>
+                  <strong>{{ contact.value }}</strong>
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -271,7 +313,7 @@ useHead({
   width: 0.4rem;
   height: 0.4rem;
   border-radius: 50%;
-  /* background: var(--color-accent); */
+  background: var(--color-accent);
 }
 
 .hero-grid {
@@ -568,10 +610,6 @@ h1 span {
   gap: clamp(1.5rem, 4vw, 3rem);
 }
 
-.hero-footer .hero-detail-label::before {
-  content: none;
-}
-
 .hero-footer ul {
   display: flex;
   flex-wrap: wrap;
@@ -622,6 +660,10 @@ h1 span {
   align-items: end;
   gap: 3rem;
   margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.placeholder-section .section-heading {
+  margin-bottom: 0;
 }
 
 .section-heading h2,
