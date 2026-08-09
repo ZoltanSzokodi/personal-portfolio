@@ -70,7 +70,7 @@ useHead({
             </p>
 
             <div class="hero-stats" aria-labelledby="hero-stats-title">
-              <p id="hero-stats-title" class="hero-detail-label">By the numbers</p>
+              <p class="hero-detail-label">By the numbers</p>
               <dl class="hero-stats-list">
                 <div v-for="stat in heroStats" :key="stat.label">
                   <dt>{{ stat.label }}</dt>
@@ -138,13 +138,10 @@ useHead({
       aria-labelledby="experience-title"
     >
       <div class="container">
-        <SectionTerminalTitle index="01" path="experience" />
+        <SectionTerminalTitle index="01" command="cd ~/experience && ls" />
 
         <div class="section-heading">
-          <div>
-            <p class="eyebrow">Experience</p>
-            <h2 id="experience-title">Production work, distilled.</h2>
-          </div>
+          <h2 id="experience-title">Production work, distilled.</h2>
           <p>Selected roles, responsibilities, and measurable outcomes will be added here.</p>
         </div>
       </div>
@@ -152,13 +149,10 @@ useHead({
 
     <section id="projects" class="section section--bordered" aria-labelledby="projects-title">
       <div class="container">
-        <SectionTerminalTitle index="02" path="projects" />
+        <SectionTerminalTitle index="02" command="cd ~/projects && ls" />
 
         <div class="section-heading">
-          <div>
-            <p class="eyebrow">Selected work</p>
-            <h2 id="projects-title">Projects shaped by real product constraints.</h2>
-          </div>
+          <h2 id="projects-title">Projects shaped by real product constraints.</h2>
           <p>
             A few case studies showing how I approach technical trade-offs, resilient interfaces,
             and delivery. Sample projects are clearly marked.
@@ -178,15 +172,10 @@ useHead({
 
     <section id="stack" class="section section--bordered" aria-labelledby="stack-title">
       <div class="container">
-        <SectionTerminalTitle index="03" path="stack" />
+        <SectionTerminalTitle index="03" command="cat ~/stack.txt" />
 
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">The stack</p>
-            <h2 id="stack-title">Tools I build with.</h2>
-          </div>
-          <p>A concise overview for now. More context about how I use each tool will follow.</p>
-        </div>
+        <h2 id="stack-title">Tools I build with.</h2>
+        <p>A concise overview for now. More context about how I use each tool will follow.</p>
 
         <ul class="skill-list" aria-label="Skills and interests">
           <li v-for="skill in skills" :key="skill">{{ skill }}</li>
@@ -194,21 +183,21 @@ useHead({
       </div>
     </section>
 
-    <section id="about" class="section section--bordered" aria-labelledby="about-title">
+    <section id="whoami" class="section section--bordered" aria-labelledby="whoami-title">
       <div class="container">
-        <SectionTerminalTitle index="04" path="about" />
+        <SectionTerminalTitle index="04" command="whoami" />
 
-        <div class="about-grid">
+        <div class="whoami-grid">
           <div>
-            <p class="eyebrow">About</p>
-            <h2 id="about-title">Mobile foundations,<br />web curiosity.</h2>
+            <p class="eyebrow">whoami</p>
+            <h2 id="whoami-title">Mobile foundations,<br />web curiosity.</h2>
           </div>
 
-          <div class="about-copy">
-            <p class="about-lead">
+          <div class="whoami-copy">
+            <p class="whoami-lead">
               I’ve spent most of my time building cross-platform mobile experiences with React
               Native. This portfolio is also a learning project: a place to translate what I know
-              about components, state, performance, and UX into Vue’s ecosystem.
+              whoami components, state, performance, and UX into Vue’s ecosystem.
             </p>
             <p>
               I’m drawn to teams that value clear communication, pragmatic engineering, and products
@@ -221,13 +210,10 @@ useHead({
 
     <section id="contact" class="section contact-section" aria-labelledby="contact-title">
       <div class="container">
-        <SectionTerminalTitle index="05" path="contact" inverse />
+        <SectionTerminalTitle index="05" command="open ~/contact" inverse />
 
         <div class="contact-grid">
-          <div>
-            <p class="eyebrow">Contact</p>
-            <h2 id="contact-title">Let’s build something useful.</h2>
-          </div>
+          <h2 id="contact-title">Let’s build something useful.</h2>
 
           <div class="contact-copy">
             <p>
@@ -292,7 +278,7 @@ useHead({
   padding-bottom: 0;
   color: var(--color-muted);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -307,6 +293,7 @@ useHead({
   align-items: center;
   gap: 0.5rem;
   color: var(--color-accent-dark);
+  font-size: 0.75rem;
 }
 
 .hero-meta-type span {
@@ -400,16 +387,22 @@ h1 span {
   margin: 0;
   color: var(--color-muted);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .hero-detail-label::before {
-  content: '•';
+  content: '';
+  width: 0.4rem;
+  height: 0.4rem;
+  display: inline-block;
   margin-right: 0.55rem;
+  border-radius: 50%;
   color: var(--color-accent);
+  background: var(--color-accent);
+  vertical-align: middle;
 }
 
 .hero-stats {
@@ -667,7 +660,7 @@ h1 span {
 }
 
 .section-heading h2,
-.about-grid h2,
+.whoami-grid h2,
 .contact-grid h2 {
   max-width: 13ch;
   margin: 1rem 0 0;
@@ -689,25 +682,25 @@ h1 span {
   gap: clamp(1.5rem, 3vw, 2.5rem);
 }
 
-.about-grid,
+.whoami-grid,
 .contact-grid {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(20rem, 1.1fr);
   gap: clamp(3rem, 10vw, 10rem);
 }
 
-.about-copy,
+.whoami-copy,
 .contact-copy {
   max-width: 43rem;
 }
 
-.about-copy p,
+.whoami-copy p,
 .contact-copy > p {
   color: var(--color-muted);
   line-height: 1.75;
 }
 
-.about-copy .about-lead {
+.whoami-copy .whoami-lead {
   margin-top: 0;
   color: var(--color-text);
   font-size: clamp(1.25rem, 2.5vw, 1.65rem);
@@ -738,7 +731,7 @@ h1 span {
   color: var(--color-bg);
 }
 
-.contact-section .eyebrow {
+.contact-section {
   color: #83d7b7;
 }
 
@@ -829,7 +822,7 @@ h1 span {
   }
 
   .section-heading,
-  .about-grid,
+  .whoami-grid,
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 2rem;

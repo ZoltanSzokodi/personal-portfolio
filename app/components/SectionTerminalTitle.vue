@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineProps<{
   index: string
-  path: string
+  command: string
   inverse?: boolean
 }>()
 </script>
@@ -10,11 +10,10 @@ defineProps<{
   <p
     class="section-terminal-title"
     :class="{ 'section-terminal-title--inverse': inverse }"
-    :aria-label="`Section ${index}: ${path}`"
+    :aria-label="`Section ${index}: ${command}`"
   >
     <span class="section-terminal-title__prompt" aria-hidden="true">[{{ index }}] $</span>
-    <span class="section-terminal-title__command" aria-hidden="true">cd</span>
-    <span class="section-terminal-title__path" aria-hidden="true">~/{{ path }}</span>
+    <span class="section-terminal-title__command" aria-hidden="true">{{ command }}</span>
   </p>
 </template>
 
@@ -34,8 +33,7 @@ defineProps<{
   color: var(--color-muted);
 }
 
-.section-terminal-title__command,
-.section-terminal-title__path {
+.section-terminal-title__command {
   color: var(--color-accent-dark);
 }
 
@@ -43,8 +41,7 @@ defineProps<{
   color: #708079;
 }
 
-.section-terminal-title--inverse .section-terminal-title__command,
-.section-terminal-title--inverse .section-terminal-title__path {
+.section-terminal-title--inverse .section-terminal-title__command {
   color: #83d7b7;
 }
 </style>

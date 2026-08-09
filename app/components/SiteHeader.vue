@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { siteConfig } from '#shared/data/site'
 
-type SectionId = 'experience' | 'projects' | 'stack' | 'about' | 'contact'
+type SectionId = 'experience' | 'projects' | 'stack' | 'whoami' | 'contact'
 
 interface NavItem {
   label: string
@@ -12,7 +12,7 @@ const navItems: NavItem[] = [
   { label: 'EXPERIENCE', sectionId: 'experience' },
   { label: 'PROJECTS', sectionId: 'projects' },
   { label: 'THE STACK', sectionId: 'stack' },
-  { label: 'ABOUT ME', sectionId: 'about' },
+  { label: 'WHO AM I', sectionId: 'whoami' },
   { label: 'CONTACT', sectionId: 'contact' },
 ]
 
