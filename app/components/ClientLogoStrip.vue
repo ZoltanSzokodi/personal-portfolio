@@ -89,7 +89,7 @@ import SolitLogo from './SVGs/SolitLogo.vue'
 .hero-clients {
   width: 100%;
   grid-column: 1 / -1;
-  margin-top: clamp(2rem, 4vw, 3rem);
+  margin-top: clamp(1rem, 2vw, 1.5rem);
   padding-top: 1.25rem;
 }
 
@@ -98,6 +98,7 @@ import SolitLogo from './SVGs/SolitLogo.vue'
   grid-template-columns: repeat(6, minmax(0, 1fr));
   align-items: center;
   gap: 4rem;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
