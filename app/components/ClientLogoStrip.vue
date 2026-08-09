@@ -12,32 +12,56 @@ import SolitLogo from './SVGs/SolitLogo.vue'
     <p id="hero-clients-title" class="hero-detail-label">Shipped production apps for…</p>
     <ul aria-label="Client logos">
       <li>
-        <a href="https://www.ardplus.de/" aria-label="Visit ARD Plus" target="_blank" rel="noopener noreferrer"
+        <a
+          href="https://www.ardplus.de/"
+          aria-label="Visit ARD Plus"
+          target="_blank"
+          rel="noopener noreferrer"
           ><ArdPlusLogo class="client-logo--ardplus"
         /></a>
       </li>
       <li>
-        <a href="https://www.bookwire.net/" aria-label="Visit Bookwire" target="_blank" rel="noopener noreferrer"
+        <a
+          href="https://www.bookwire.net/"
+          aria-label="Visit Bookwire"
+          target="_blank"
+          rel="noopener noreferrer"
           ><BookwireLogo class="client-logo--bookwire"
         /></a>
       </li>
       <li>
-        <a href="https://flexgold.com/" aria-label="Visit Flexgold" target="_blank" rel="noopener noreferrer"
+        <a
+          href="https://flexgold.com/"
+          aria-label="Visit Flexgold"
+          target="_blank"
+          rel="noopener noreferrer"
           ><FlexgoldLogo class="client-logo--flexgold"
         /></a>
       </li>
       <li>
-        <a href="https://www.leoninestudios.com/" aria-label="Visit Leonine Studios" target="_blank" rel="noopener noreferrer"
+        <a
+          href="https://www.leoninestudios.com/"
+          aria-label="Visit Leonine Studios"
+          target="_blank"
+          rel="noopener noreferrer"
           ><LeonineLogo class="client-logo--leonine"
         /></a>
       </li>
       <li>
-        <a href="https://www.netzkino.de/" aria-label="Visit Netzkino" target="_blank" rel="noopener noreferrer"
+        <a
+          href="https://www.netzkino.de/"
+          aria-label="Visit Netzkino"
+          target="_blank"
+          rel="noopener noreferrer"
           ><NetzkinoLogo class="client-logo-netzkino"
         /></a>
       </li>
       <li>
-        <a href="https://www.solit-kapital.de/" aria-label="Visit Solit" target="_blank" rel="noopener noreferrer"
+        <a
+          href="https://www.solit-kapital.de/"
+          aria-label="Visit Solit"
+          target="_blank"
+          rel="noopener noreferrer"
           ><SolitLogo class="client-logo--solit"
         /></a>
       </li>
