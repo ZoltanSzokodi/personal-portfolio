@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineOptions({ name: 'LeonineLogo' })
 
-const { title = '' } = defineProps<{
+const { title = 'Leonine Studios' } = defineProps<{
   title?: string
 }>()
 </script>

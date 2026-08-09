@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineOptions({ name: 'ArdPlusLogo' })
 
-const { title = '' } = defineProps<{
+const { title = 'ARD Plus' } = defineProps<{
   title?: string
 }>()
 </script>

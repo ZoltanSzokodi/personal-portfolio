@@ -113,17 +113,7 @@ useHead({
             </figcaption>
           </figure>
 
-          <div class="hero-clients" aria-labelledby="hero-clients-title">
-            <p id="hero-clients-title" class="hero-detail-label">Shipped production apps for…</p>
-            <ul aria-label="Client logos">
-              <li><ArdPlusLogo class="client-logo--ardplus" title="ARD Plus" /></li>
-              <li><BookwireLogo class="client-logo--bookwire" title="Bookwire" /></li>
-              <li><FlexgoldLogo class="client-logo--flexgold" title="Flexgold" /></li>
-              <li><LeonineLogo class="client-logo--leonine" title="Leonine Studios" /></li>
-              <li><NetzkinoLogo class="client-logo-netzkino" title="Netzkino" /></li>
-              <li><SolitLogo class="client-logo--solit" title="Solit" /></li>
-            </ul>
-          </div>
+          <ClientLogoStrip />
         </div>
 
         <footer class="hero-footer">
@@ -460,38 +450,6 @@ h1 span {
   bottom: 0.2rem;
 }
 
-.hero-clients {
-  width: 100%;
-  grid-column: 1 / -1;
-  margin-top: clamp(2rem, 4vw, 3rem);
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--color-line);
-}
-
-.hero-clients ul {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  align-items: center;
-  gap: 4rem;
-  /* margin: 1.1rem 0 0; */
-  padding: 0;
-  list-style: none;
-}
-
-.client-logo--ardplus {
-}
-.client-logo--bookwire {
-}
-.client-logo--flexgold {
-}
-.client-logo--leonine {
-}
-.client-logo--netzkino {
-}
-.client-logo--solit {
-  /* height: 4rem; */
-}
-
 .profile-card {
   width: min(100%, 22rem);
   justify-self: end;
@@ -799,32 +757,6 @@ h1 span {
     grid-template-columns: 1fr;
     align-items: start;
     gap: 3.5rem;
-  }
-
-  .hero-clients ul {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 2rem clamp(2.5rem, 7vw, 4rem);
-  }
-
-  .hero-clients li {
-    display: grid;
-    min-width: 0;
-    place-items: center;
-  }
-
-  .hero-clients li > svg {
-    display: block;
-    width: auto;
-    max-width: 100%;
-    height: clamp(1.25rem, 3.5vw, 1.75rem);
-  }
-
-  .hero-clients li > .client-logo--leonine {
-    height: clamp(2rem, 5vw, 2.5rem);
-  }
-
-  .hero-clients li > .client-logo--solit {
-    height: clamp(3rem, 10vw, 5rem);
   }
 
   .profile-card {

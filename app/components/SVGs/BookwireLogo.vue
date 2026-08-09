@@ -3,7 +3,7 @@ import { useId } from 'vue'
 
 defineOptions({ name: 'BookwireLogo' })
 
-const { title = '' } = defineProps<{
+const { title = 'Bookwire' } = defineProps<{
   title?: string
 }>()
 
