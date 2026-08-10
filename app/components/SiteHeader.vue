@@ -23,6 +23,7 @@ const route = useRoute()
 const activeSection = ref<SectionId | null>(null)
 const scrollProgress = ref(0)
 const isProfileImageAvailable = ref(false)
+const isThemeMoonIcon = ref(false)
 const menuButton = ref<HTMLButtonElement | null>(null)
 const mobileMenuDialog = ref<HTMLDialogElement | null>(null)
 const isMobileMenuOpen = ref(false)
@@ -141,6 +142,10 @@ const handleBrandNavigation = (event: MouseEvent) => {
     top: 0,
     behavior: prefersReducedMotion() ? 'auto' : 'smooth',
   })
+}
+
+const toggleThemeIcon = () => {
+  isThemeMoonIcon.value = !isThemeMoonIcon.value
 }
 
 const openMobileMenu = () => {
@@ -328,19 +333,63 @@ onBeforeUnmount(() => {
         </ul>
       </nav>
 
-      <button
-        ref="menuButton"
-        class="menu-toggle"
-        type="button"
-        aria-label="Open navigation"
-        aria-controls="mobile-navigation"
-        :aria-expanded="isMobileMenuOpen"
-        @click="openMobileMenu"
-      >
-        <span aria-hidden="true" />
-        <span aria-hidden="true" />
-        <span aria-hidden="true" />
-      </button>
+      <div class="header-controls">
+        <div class="header-actions" aria-label="Profile actions">
+          <a
+            class="header-action header-action--social"
+            href="https://github.com/ZoltanSzokodi"
+            aria-label="GitHub"
+            title="GitHub"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <SVGsGithubLogo title="" aria-hidden="true" />
+          </a>
+          <a
+            class="header-action header-action--social"
+            href="https://www.linkedin.com/in/zoltan-szabi-szokodi/"
+            aria-label="LinkedIn"
+            title="LinkedIn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <SVGsLinkedInLogo title="" aria-hidden="true" />
+          </a>
+          <a
+            class="header-action"
+            href=""
+            aria-label="CV / Resume"
+            title="CV / Resume"
+            @click.prevent
+          >
+            <SVGsDocumentLogo title="" aria-hidden="true" />
+          </a>
+          <button
+            class="header-action theme-toggle"
+            type="button"
+            aria-label="Toggle theme icon"
+            title="Theme"
+            :aria-pressed="isThemeMoonIcon"
+            @click="toggleThemeIcon"
+          >
+            <SVGsMoonLogo v-if="isThemeMoonIcon" title="" aria-hidden="true" />
+            <SVGsSunLogo v-else title="" aria-hidden="true" />
+          </button>
+        </div>
+
+        <button
+          ref="menuButton"
+          class="menu-toggle"
+          type="button"
+          aria-label="Open navigation"
+          title="Open navigation"
+          aria-controls="mobile-navigation"
+          :aria-expanded="isMobileMenuOpen"
+          @click="openMobileMenu"
+        >
+          <SVGsHamburgerMenuIcon title="" aria-hidden="true" />
+        </button>
+      </div>
     </div>
   </header>
 
@@ -563,31 +612,72 @@ onBeforeUnmount(() => {
   display: none;
 }
 
-.menu-toggle {
-  width: 2.75rem;
-  height: 2.75rem;
-  display: none;
-  flex: 0 0 auto;
-  flex-direction: column;
+.header-controls {
+  --header-control-gap: 0.5rem;
+
+  display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.27rem;
-  padding: 0;
-  border: 1px solid var(--color-line);
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--color-surface) 65%, transparent);
-  color: var(--color-text);
-  cursor: pointer;
+  gap: var(--header-control-gap);
+  margin-left: auto;
 }
 
-.menu-toggle > span {
-  width: 1.05rem;
-  height: 1px;
-  background: currentColor;
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--header-control-gap);
+}
+
+.header-action {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 0.8rem;
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background-color 160ms ease;
+}
+
+.header-action > svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.header-action:hover {
+  background: color-mix(in srgb, var(--color-muted) 10%, var(--color-surface));
+}
+
+.theme-toggle {
+  border: 1px solid var(--color-line);
+}
+
+.menu-toggle {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: none;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: 0.8rem;
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background-color 160ms ease;
 }
 
 .menu-toggle:hover {
-  border-color: var(--color-muted);
+  background: color-mix(in srgb, var(--color-muted) 10%, var(--color-surface));
+}
+
+.menu-toggle > svg {
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .mobile-menu-dialog {
@@ -747,9 +837,12 @@ onBeforeUnmount(() => {
     display: none;
   }
 
+  .header-action--social {
+    display: none;
+  }
+
   .menu-toggle {
     display: inline-flex;
-    margin-left: auto;
   }
 }
 
@@ -760,10 +853,6 @@ onBeforeUnmount(() => {
 }
 
 @include bp.compact-and-down {
-  .header-inner {
-    gap: 1rem;
-  }
-
   .mobile-menu-dialog {
     width: 100vw;
   }
