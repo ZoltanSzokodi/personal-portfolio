@@ -789,6 +789,14 @@ h1 span {
 }
 
 @include bp.tablet-and-down {
+  .hero-meta > p:first-child {
+    display: none;
+  }
+
+  .hero-meta-type {
+    margin-left: auto;
+  }
+
   .hero {
     min-height: auto;
   }

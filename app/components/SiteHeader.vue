@@ -270,7 +270,7 @@ onBeforeUnmount(() => {
     </div>
 
     <div class="container header-inner">
-      <NuxtLink class="brand" to="/" :aria-label="`${siteConfig.name}, home`">
+      <NuxtLink class="brand" to="/" :aria-label="`${siteConfig.fullName}, home`">
         <span class="brand-mark" aria-hidden="true">
           <img
             v-if="isProfileImageAvailable"
@@ -280,7 +280,7 @@ onBeforeUnmount(() => {
           />
           <span v-else>{{ siteConfig.initials }}</span>
         </span>
-        <span class="brand-name">{{ siteConfig.name }}</span>
+        <span class="brand-name">{{ siteConfig.fullName }}</span>
       </NuxtLink>
 
       <nav class="desktop-nav" aria-label="Primary navigation">
@@ -714,6 +714,14 @@ onBeforeUnmount(() => {
     margin-left: 0;
   }
 
+  .brand-name {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
   .desktop-nav {
     display: none;
   }
@@ -731,15 +739,6 @@ onBeforeUnmount(() => {
 }
 
 @include bp.compact-and-down {
-  .brand-name {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-  }
-
   .header-inner {
     gap: 1rem;
   }
