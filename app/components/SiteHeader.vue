@@ -217,7 +217,7 @@ onMounted(() => {
   profileImage.src = siteConfig.profileImage
 
   supportsScrollEnd = 'onscrollend' in window
-  desktopMediaQuery = window.matchMedia('(min-width: 52.001rem)')
+  desktopMediaQuery = window.matchMedia('(min-width: 60.001rem)')
   refreshSections()
   window.addEventListener('scroll', handleScroll, { passive: true })
   window.addEventListener('resize', scheduleActiveSectionUpdate)
@@ -417,6 +417,7 @@ onBeforeUnmount(() => {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
+  margin-left: auto;
   color: var(--color-text);
   font-weight: 720;
   letter-spacing: -0.02em;
@@ -425,6 +426,7 @@ onBeforeUnmount(() => {
 
 .desktop-nav {
   min-width: 0;
+  order: -1;
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -699,13 +701,24 @@ onBeforeUnmount(() => {
   }
 }
 
-@media (max-width: 52rem) {
+@media (max-width: 60rem) {
+  .brand {
+    margin-left: 0;
+  }
+
   .desktop-nav {
     display: none;
   }
 
   .menu-toggle {
     display: inline-flex;
+    margin-left: auto;
+  }
+}
+
+@media (min-width: 60.001rem) {
+  .brand {
+    display: none;
   }
 }
 
