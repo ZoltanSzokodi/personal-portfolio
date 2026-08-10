@@ -74,6 +74,9 @@ import SolitLogo from './SVGs/SolitLogo.vue'
 
 .hero-detail-label {
   margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
   color: var(--color-muted);
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -84,14 +87,12 @@ import SolitLogo from './SVGs/SolitLogo.vue'
 
 .hero-detail-label::before {
   content: '';
-  display: inline-block;
   width: 0.4rem;
   height: 0.4rem;
-  margin-right: 0.55rem;
+  flex: 0 0 0.4rem;
   border-radius: 50%;
   color: var(--color-accent);
   background: var(--color-accent);
-  vertical-align: middle;
 }
 
 .hero-clients {

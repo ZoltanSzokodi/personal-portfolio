@@ -267,16 +267,11 @@ useHead({
 @use '@/assets/css/breakpoints' as bp;
 
 .hero {
-  --hero-top-space: clamp(1.25rem, 2.5vh, 2rem);
   min-height: calc(100svh - 4rem);
   display: grid;
   /* position: relative; */
   overflow: hidden;
-  padding-block: var(--hero-top-space) 0;
-}
-
-.container.hero {
-  padding-top: 0;
+  padding: 0;
 }
 
 /* .hero::before {
@@ -413,6 +408,9 @@ h1 span {
 
 .hero-detail-label {
   margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
   color: var(--color-muted);
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -425,12 +423,10 @@ h1 span {
   content: '';
   width: 0.4rem;
   height: 0.4rem;
-  display: inline-block;
-  margin-right: 0.55rem;
+  flex: 0 0 0.4rem;
   border-radius: 50%;
   color: var(--color-accent);
   background: var(--color-accent);
-  vertical-align: middle;
 }
 
 .hero-stats {
