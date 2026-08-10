@@ -55,7 +55,7 @@ defineProps<{
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/styles/breakpoints' as bp;
+@use '@/assets/css/breakpoints' as bp;
 
 .project-visual {
   min-height: 18rem;

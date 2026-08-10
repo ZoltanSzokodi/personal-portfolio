@@ -14,7 +14,7 @@ const currentYear = new Date().getFullYear()
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/styles/breakpoints' as bp;
+@use '@/assets/css/breakpoints' as bp;
 
 .site-footer {
   padding-block: 2rem;

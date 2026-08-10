@@ -17,7 +17,7 @@ defineProps<{
   </p>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .section-terminal-title {
   display: flex;
   align-items: baseline;

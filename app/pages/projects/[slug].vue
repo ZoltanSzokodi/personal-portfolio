@@ -111,7 +111,7 @@ useHead({ link: [{ rel: 'canonical', href: canonicalUrl }] })
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/styles/breakpoints' as bp;
+@use '@/assets/css/breakpoints' as bp;
 
 .project-hero {
   padding-top: clamp(2.5rem, 6vw, 5rem);

@@ -264,7 +264,7 @@ useHead({
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/styles/breakpoints' as bp;
+@use '@/assets/css/breakpoints' as bp;
 
 .hero {
   --hero-top-space: clamp(1.25rem, 2.5vh, 2rem);

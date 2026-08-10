@@ -8,7 +8,7 @@ export default defineNuxtConfig({
 
   modules: ['@nuxt/eslint', '@nuxt/image'],
 
-  css: ['~/assets/css/main.css'],
+  css: ['~/assets/css/main.scss'],
 
   eslint: {
     config: {

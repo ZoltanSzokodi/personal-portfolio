@@ -33,7 +33,7 @@ defineProps<{
   </article>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .project-card {
   min-width: 0;
   position: relative;

@@ -381,7 +381,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/styles/breakpoints' as bp;
+@use '@/assets/css/breakpoints' as bp;
 
 .site-header {
   position: sticky;

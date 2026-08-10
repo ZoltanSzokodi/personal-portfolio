@@ -70,7 +70,7 @@ import SolitLogo from './SVGs/SolitLogo.vue'
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/styles/breakpoints' as bp;
+@use '@/assets/css/breakpoints' as bp;
 
 .hero-detail-label {
   margin: 0;
