@@ -69,7 +69,9 @@ import SolitLogo from './SVGs/SolitLogo.vue'
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+@use '@/assets/styles/breakpoints' as bp;
+
 .hero-detail-label {
   margin: 0;
   color: var(--color-muted);
@@ -117,7 +119,7 @@ import SolitLogo from './SVGs/SolitLogo.vue'
   text-decoration: none;
 }
 
-@media (max-width: 60rem) {
+@include bp.tablet-and-down {
   .hero-clients ul {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 2rem clamp(2.5rem, 7vw, 4rem);

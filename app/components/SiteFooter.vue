@@ -13,7 +13,9 @@ const currentYear = new Date().getFullYear()
   </footer>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+@use '@/assets/styles/breakpoints' as bp;
+
 .site-footer {
   padding-block: 2rem;
   border-top: 1px solid var(--color-line);
@@ -32,7 +34,7 @@ const currentYear = new Date().getFullYear()
   margin: 0;
 }
 
-@media (max-width: 42rem) {
+@include bp.mobile-and-down {
   .footer-inner {
     align-items: flex-start;
     flex-direction: column;

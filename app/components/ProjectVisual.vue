@@ -54,7 +54,9 @@ defineProps<{
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+@use '@/assets/styles/breakpoints' as bp;
+
 .project-visual {
   min-height: 18rem;
   display: grid;
@@ -360,7 +362,7 @@ defineProps<{
   background: #dbe4df;
 }
 
-@media (max-width: 42rem) {
+@include bp.mobile-and-down {
   .project-visual {
     min-height: 15rem;
   }

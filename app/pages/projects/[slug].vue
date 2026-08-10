@@ -110,7 +110,9 @@ useHead({ link: [{ rel: 'canonical', href: canonicalUrl }] })
   </article>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+@use '@/assets/styles/breakpoints' as bp;
+
 .project-hero {
   padding-top: clamp(2.5rem, 6vw, 5rem);
 }
@@ -261,7 +263,7 @@ h2 {
   color: var(--color-accent);
   font-size: 0.65em;
 }
-@media (max-width: 46rem) {
+@include bp.mobile-and-down {
   .project-heading,
   .content-grid {
     grid-template-columns: 1fr;

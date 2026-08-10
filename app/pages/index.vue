@@ -263,7 +263,9 @@ useHead({
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+@use '@/assets/styles/breakpoints' as bp;
+
 .hero {
   --hero-top-space: clamp(1.25rem, 2.5vh, 2rem);
   min-height: calc(100svh - 4rem);
@@ -816,7 +818,7 @@ h1 span {
   color: #83d7b7;
 }
 
-@media (max-width: 60rem) {
+@include bp.tablet-and-down {
   .hero {
     min-height: auto;
   }
@@ -845,7 +847,7 @@ h1 span {
   }
 }
 
-@media (max-width: 45rem) {
+@include bp.mobile-and-down {
   .hero-stats-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -876,7 +878,7 @@ h1 span {
   }
 }
 
-@media (max-width: 32rem) {
+@include bp.compact-and-down {
   .hero-stats-list {
     grid-template-columns: 1fr;
   }

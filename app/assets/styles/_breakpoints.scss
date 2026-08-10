@@ -1,0 +1,28 @@
+// Canonical responsive tiers for coordinated layout changes.
+$tablet-max: 60rem;
+$mobile-max: 45rem;
+$compact-max: 32rem;
+
+@mixin tablet-and-down {
+  @media (max-width: $tablet-max) {
+    @content;
+  }
+}
+
+@mixin mobile-and-down {
+  @media (max-width: $mobile-max) {
+    @content;
+  }
+}
+
+@mixin compact-and-down {
+  @media (max-width: $compact-max) {
+    @content;
+  }
+}
+
+@mixin desktop-up {
+  @media (width > $tablet-max) {
+    @content;
+  }
+}

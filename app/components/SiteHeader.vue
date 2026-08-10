@@ -33,7 +33,6 @@ let lockedSection: SectionId | null = null
 let supportsScrollEnd = false
 let isMobileMenuClosing = false
 let shouldRestoreMenuButtonFocus = true
-let desktopMediaQuery: MediaQueryList | undefined
 
 const updateScrollProgress = () => {
   const scrollableDistance = document.documentElement.scrollHeight - window.innerHeight
@@ -199,8 +198,17 @@ const handleMobileNavSelection = (sectionId: SectionId) => {
   void closeMobileMenu(false)
 }
 
-const handleDesktopViewport = (event: MediaQueryListEvent) => {
-  if (event.matches) void closeMobileMenu()
+const handleViewportResize = () => {
+  scheduleActiveSectionUpdate()
+
+  const button = menuButton.value
+  if (
+    mobileMenuDialog.value?.open &&
+    button &&
+    window.getComputedStyle(button).display === 'none'
+  ) {
+    void closeMobileMenu()
+  }
 }
 
 onMounted(() => {
@@ -217,11 +225,9 @@ onMounted(() => {
   profileImage.src = siteConfig.profileImage
 
   supportsScrollEnd = 'onscrollend' in window
-  desktopMediaQuery = window.matchMedia('(min-width: 60.001rem)')
   refreshSections()
   window.addEventListener('scroll', handleScroll, { passive: true })
-  window.addEventListener('resize', scheduleActiveSectionUpdate)
-  desktopMediaQuery.addEventListener('change', handleDesktopViewport)
+  window.addEventListener('resize', handleViewportResize)
 
   if (supportsScrollEnd) {
     document.addEventListener('scrollend', handleScrollEnd)
@@ -240,8 +246,7 @@ watch(
 
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', handleScroll)
-  window.removeEventListener('resize', scheduleActiveSectionUpdate)
-  desktopMediaQuery?.removeEventListener('change', handleDesktopViewport)
+  window.removeEventListener('resize', handleViewportResize)
 
   if (supportsScrollEnd) {
     document.removeEventListener('scrollend', handleScrollEnd)
@@ -375,7 +380,9 @@ onBeforeUnmount(() => {
   </Teleport>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+@use '@/assets/styles/breakpoints' as bp;
+
 .site-header {
   position: sticky;
   top: 0;
@@ -701,7 +708,7 @@ onBeforeUnmount(() => {
   }
 }
 
-@media (max-width: 60rem) {
+@include bp.tablet-and-down {
   .brand {
     margin-left: 0;
   }
@@ -716,13 +723,13 @@ onBeforeUnmount(() => {
   }
 }
 
-@media (min-width: 60.001rem) {
+@include bp.desktop-up {
   .brand {
     display: none;
   }
 }
 
-@media (max-width: 34rem) {
+@include bp.compact-and-down {
   .brand-name {
     position: absolute;
     width: 1px;
@@ -735,9 +742,7 @@ onBeforeUnmount(() => {
   .header-inner {
     gap: 1rem;
   }
-}
 
-@media (max-width: 26rem) {
   .mobile-menu-dialog {
     width: 100vw;
   }
