@@ -59,8 +59,8 @@ const toggleThemeIcon = () => {
   position: absolute;
   inset: 0;
   transition:
-    opacity 180ms ease,
-    transform 180ms ease;
+    opacity 300ms ease,
+    transform 300ms ease;
 }
 
 .theme-toggle-icon__sun {
@@ -70,12 +70,12 @@ const toggleThemeIcon = () => {
 
 .theme-toggle-icon__moon {
   opacity: 0;
-  transform: scale(0.7) rotate(180deg);
+  transform: scale(0.7) rotate(270deg);
 }
 
 .theme-toggle-icon--moon .theme-toggle-icon__sun {
   opacity: 0;
-  transform: scale(0.7) rotate(180deg);
+  transform: scale(0.7) rotate(-270deg);
 }
 
 .theme-toggle-icon--moon .theme-toggle-icon__moon {
