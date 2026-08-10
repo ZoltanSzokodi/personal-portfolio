@@ -715,6 +715,7 @@ onBeforeUnmount(() => {
   }
 
   .brand-name {
+    color: var(--color-muted);
     font-family: var(--font-mono);
     font-size: 0.75rem;
     font-weight: 700;
