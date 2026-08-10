@@ -1,5 +1,5 @@
 {
-  "cSpell.words": ["nuxt", "bookwire", "flexgold", "netzkino", "solit"],
+  "cSpell.words": ["nuxt", "bookwire", "flexgold", "netzkino", "solit", "ardplus"],
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[vue]": {
