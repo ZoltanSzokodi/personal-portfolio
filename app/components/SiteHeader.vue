@@ -22,6 +22,7 @@ const NAVIGATION_UNLOCK_SAFETY_DELAY = 2000
 const route = useRoute()
 const activeSection = ref<SectionId | null>(null)
 const scrollProgress = ref(0)
+const isProfileImageAvailable = ref(false)
 const menuButton = ref<HTMLButtonElement | null>(null)
 const mobileMenuDialog = ref<HTMLDialogElement | null>(null)
 const isMobileMenuOpen = ref(false)
@@ -203,6 +204,18 @@ const handleDesktopViewport = (event: MediaQueryListEvent) => {
 }
 
 onMounted(() => {
+  const profileImage = new Image()
+
+  profileImage.addEventListener(
+    'load',
+    () => {
+      isProfileImageAvailable.value = true
+    },
+    { once: true },
+  )
+
+  profileImage.src = siteConfig.profileImage
+
   supportsScrollEnd = 'onscrollend' in window
   desktopMediaQuery = window.matchMedia('(min-width: 52.001rem)')
   refreshSections()
@@ -253,7 +266,15 @@ onBeforeUnmount(() => {
 
     <div class="container header-inner">
       <NuxtLink class="brand" to="/" :aria-label="`${siteConfig.name}, home`">
-        <span class="brand-mark" aria-hidden="true">{{ siteConfig.initials }}</span>
+        <span class="brand-mark" aria-hidden="true">
+          <img
+            v-if="isProfileImageAvailable"
+            :src="siteConfig.profileImage"
+            alt=""
+            @error="isProfileImageAvailable = false"
+          />
+          <span v-else>{{ siteConfig.initials }}</span>
+        </span>
         <span class="brand-name">{{ siteConfig.name }}</span>
       </NuxtLink>
 
@@ -423,6 +444,15 @@ onBeforeUnmount(() => {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 0;
+  overflow: hidden;
+}
+
+.brand-mark img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center 24%;
 }
 
 .nav-list {

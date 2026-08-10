@@ -3,6 +3,21 @@ import { projects } from '#shared/data/projects'
 import { siteConfig } from '#shared/data/site'
 
 const canonicalUrl = useCanonicalUrl('/')
+const isProfileImageAvailable = ref(false)
+
+onMounted(() => {
+  const profileImage = new Image()
+
+  profileImage.addEventListener(
+    'load',
+    () => {
+      isProfileImageAvailable.value = true
+    },
+    { once: true },
+  )
+
+  profileImage.src = siteConfig.profileImage
+})
 
 const skills = [
   'React Native',
@@ -99,11 +114,21 @@ useHead({
           <figure class="profile-card">
             <div
               class="profile-image-placeholder"
-              role="img"
-              :aria-label="`Portrait placeholder for ${siteConfig.name}`"
+              :role="isProfileImageAvailable ? undefined : 'img'"
+              :aria-label="
+                isProfileImageAvailable ? undefined : `Portrait placeholder for ${siteConfig.name}`
+              "
             >
-              <span aria-hidden="true">{{ siteConfig.initials }}</span>
-              <small aria-hidden="true">Portrait placeholder</small>
+              <img
+                v-if="isProfileImageAvailable"
+                :src="siteConfig.profileImage"
+                :alt="`Portrait of ${siteConfig.fullName}`"
+                @error="isProfileImageAvailable = false"
+              />
+              <template v-else>
+                <span aria-hidden="true">{{ siteConfig.initials }}</span>
+                <small aria-hidden="true">Portrait placeholder</small>
+              </template>
             </div>
             <figcaption>
               <div class="profile-identity">
@@ -490,7 +515,7 @@ h1 span {
 }
 
 .profile-card {
-  width: min(100%, 22rem);
+  width: min(100%, 17.3rem);
   justify-self: end;
   margin: 0;
   overflow: hidden;
@@ -511,15 +536,23 @@ h1 span {
     linear-gradient(145deg, var(--color-accent-soft), #a8d9c7 58%, var(--color-accent));
 }
 
-.profile-image-placeholder::before,
+.profile-image-placeholder > img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center 24%;
+}
+
+/* .profile-image-placeholder::before,
 .profile-image-placeholder::after {
   content: '';
   position: absolute;
   border: 1px solid rgb(255 255 255 / 38%);
   border-radius: 50%;
-}
+} */
 
-.profile-image-placeholder::before {
+/* .profile-image-placeholder::before {
   width: 18rem;
   height: 18rem;
   top: -6rem;
@@ -531,7 +564,7 @@ h1 span {
   height: 12rem;
   bottom: -5rem;
   left: -4rem;
-}
+} */
 
 .profile-image-placeholder > span {
   position: relative;

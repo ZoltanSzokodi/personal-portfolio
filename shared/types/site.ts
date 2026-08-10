@@ -8,6 +8,7 @@ export interface SiteConfig {
   name: string
   fullName: string
   initials: string
+  profileImage: string
   role: string
   description: string
   location: string
