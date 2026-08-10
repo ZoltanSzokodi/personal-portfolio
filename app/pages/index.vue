@@ -71,11 +71,6 @@ useHead({
         <div class="hero-grid">
           <!-- <div class="hero-copy"> -->
           <div>
-            <p class="availability-chip">
-              <span class="availability-dot" aria-hidden="true" />
-              {{ siteConfig.availability }}
-            </p>
-
             <p class="hero-kicker">Mobile architecture · Platform · Scale</p>
 
             <h1 id="hero-title">Web + mobile <span>engineer.</span></h1>
@@ -339,23 +334,8 @@ useHead({
   max-width: 48rem;
 } */
 
-.availability-chip {
-  width: fit-content;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin: 0;
-  padding: 0.6rem 0.9rem;
-  border: 1px solid var(--color-accent);
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--color-accent-soft) 50%, transparent);
-  color: var(--color-accent-dark);
-  font-size: 0.7rem;
-  font-weight: bold;
-}
-
 .hero-kicker {
-  margin: clamp(1.25rem, 2.5vh, 2rem) 0 0;
+  margin: 0;
   color: var(--color-accent);
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -363,25 +343,6 @@ useHead({
   letter-spacing: 0.15em;
   line-height: 1.5;
   text-transform: uppercase;
-}
-
-.availability-dot {
-  width: 0.5rem;
-  height: 0.5rem;
-  position: relative;
-  flex: 0 0 auto;
-  border-radius: 50%;
-  background: var(--color-accent);
-  box-shadow: 0 0 0 0.22rem var(--color-accent-soft);
-}
-
-.availability-dot::after {
-  content: '';
-  position: absolute;
-  inset: -0.25rem;
-  border: 1px solid var(--color-accent);
-  border-radius: inherit;
-  animation: availability-pulse 2s ease-out infinite;
 }
 
 h1 {
@@ -622,9 +583,20 @@ h1 span {
 .profile-card figcaption p span {
   width: 0.4rem;
   height: 0.4rem;
+  position: relative;
   flex: 0 0 auto;
   border-radius: 50%;
   background: var(--color-accent);
+  box-shadow: 0 0 0 0.22rem var(--color-accent-soft);
+}
+
+.profile-card figcaption p span::after {
+  content: '';
+  position: absolute;
+  inset: -0.25rem;
+  border: 1px solid var(--color-accent);
+  border-radius: inherit;
+  animation: availability-pulse 2s ease-out infinite;
 }
 
 .hero-footer {
