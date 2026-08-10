@@ -69,37 +69,28 @@ import SolitLogo from './SVGs/SolitLogo.vue'
   </div>
 </template>
 
-<style scoped lang="scss">
-@use '@/assets/css/breakpoints' as bp;
-
+<style scoped>
 .hero-detail-label {
   margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
   color: var(--color-muted);
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .hero-detail-label::before {
-  content: '';
-  width: 0.4rem;
-  height: 0.4rem;
-  flex: 0 0 0.4rem;
-  border-radius: 50%;
+  content: '•';
+  margin-right: 0.55rem;
   color: var(--color-accent);
-  background: var(--color-accent);
 }
 
 .hero-clients {
   width: 100%;
   grid-column: 1 / -1;
-  margin-top: clamp(1rem, 2vw, 1.5rem);
-  padding-top: 0;
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding-top: 1.25rem;
 }
 
 .hero-clients ul {
@@ -107,7 +98,6 @@ import SolitLogo from './SVGs/SolitLogo.vue'
   grid-template-columns: repeat(6, minmax(0, 1fr));
   align-items: center;
   gap: 4rem;
-  margin: 0;
   padding: 0;
   list-style: none;
 }
@@ -120,11 +110,10 @@ import SolitLogo from './SVGs/SolitLogo.vue'
   text-decoration: none;
 }
 
-@include bp.tablet-and-down {
+@media (max-width: 60rem) {
   .hero-clients ul {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 2rem clamp(2.5rem, 7vw, 4rem);
-    margin-top: 1rem;
   }
 
   .hero-clients li {
