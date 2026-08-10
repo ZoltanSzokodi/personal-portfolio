@@ -387,6 +387,7 @@ onBeforeUnmount(() => {
   position: sticky;
   top: 0;
   z-index: 10;
+  border-bottom: 1px solid var(--color-line);
   background: color-mix(in srgb, var(--color-bg) 78%, transparent);
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
