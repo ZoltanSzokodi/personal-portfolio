@@ -128,6 +128,21 @@ const selectSection = (sectionId: SectionId) => {
 
 const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
+const handleBrandNavigation = (event: MouseEvent) => {
+  if (route.path !== '/') return
+
+  event.preventDefault()
+
+  if (route.hash) {
+    window.history.replaceState(null, '', route.path)
+  }
+
+  window.scrollTo({
+    top: 0,
+    behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+  })
+}
+
 const openMobileMenu = () => {
   const dialog = mobileMenuDialog.value
   if (!dialog || dialog.open) return
@@ -270,7 +285,12 @@ onBeforeUnmount(() => {
     </div>
 
     <div class="container header-inner">
-      <NuxtLink class="brand" to="/" :aria-label="`${siteConfig.fullName}, home`">
+      <NuxtLink
+        class="brand"
+        to="/"
+        :aria-label="`${siteConfig.fullName}, home`"
+        @click="handleBrandNavigation"
+      >
         <span class="brand-mark" aria-hidden="true">
           <img
             v-if="isProfileImageAvailable"
