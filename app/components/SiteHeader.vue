@@ -23,7 +23,6 @@ const route = useRoute()
 const activeSection = ref<SectionId | null>(null)
 const scrollProgress = ref(0)
 const isProfileImageAvailable = ref(false)
-const isThemeMoonIcon = ref(false)
 const menuButton = ref<HTMLButtonElement | null>(null)
 const mobileMenuDialog = ref<HTMLDialogElement | null>(null)
 const isMobileMenuOpen = ref(false)
@@ -142,10 +141,6 @@ const handleBrandNavigation = (event: MouseEvent) => {
     top: 0,
     behavior: prefersReducedMotion() ? 'auto' : 'smooth',
   })
-}
-
-const toggleThemeIcon = () => {
-  isThemeMoonIcon.value = !isThemeMoonIcon.value
 }
 
 const openMobileMenu = () => {
@@ -364,17 +359,7 @@ onBeforeUnmount(() => {
           >
             <SVGsDocumentLogo title="" aria-hidden="true" />
           </a>
-          <button
-            class="header-action theme-toggle"
-            type="button"
-            aria-label="Toggle theme icon"
-            title="Theme"
-            :aria-pressed="isThemeMoonIcon"
-            @click="toggleThemeIcon"
-          >
-            <SVGsMoonLogo v-if="isThemeMoonIcon" title="" aria-hidden="true" />
-            <SVGsSunLogo v-else title="" aria-hidden="true" />
-          </button>
+          <ThemeToggle />
         </div>
 
         <button
@@ -649,10 +634,6 @@ onBeforeUnmount(() => {
 
 .header-action:hover {
   background: color-mix(in srgb, var(--color-muted) 10%, var(--color-surface));
-}
-
-.theme-toggle {
-  border: 1px solid var(--color-line);
 }
 
 .menu-toggle {
