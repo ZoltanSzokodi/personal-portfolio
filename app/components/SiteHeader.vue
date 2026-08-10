@@ -23,6 +23,9 @@ const route = useRoute()
 const activeSection = ref<SectionId | null>(null)
 const scrollProgress = ref(0)
 const isProfileImageAvailable = ref(false)
+const profilePreviewButton = ref<HTMLButtonElement | null>(null)
+const profilePreviewDialog = ref<HTMLDialogElement | null>(null)
+const isProfilePreviewOpen = ref(false)
 const menuButton = ref<HTMLButtonElement | null>(null)
 const mobileMenuDialog = ref<HTMLDialogElement | null>(null)
 const isMobileMenuOpen = ref(false)
@@ -143,6 +146,25 @@ const handleBrandNavigation = (event: MouseEvent) => {
   })
 }
 
+const openProfilePreview = () => {
+  const dialog = profilePreviewDialog.value
+  if (!dialog || dialog.open) return
+
+  isProfilePreviewOpen.value = true
+  dialog.showModal()
+}
+
+const closeProfilePreview = () => {
+  if (profilePreviewDialog.value?.open) {
+    profilePreviewDialog.value.close()
+  }
+}
+
+const handleProfilePreviewClosed = () => {
+  isProfilePreviewOpen.value = false
+  profilePreviewButton.value?.focus()
+}
+
 const openMobileMenu = () => {
   const dialog = mobileMenuDialog.value
   if (!dialog || dialog.open) return
@@ -224,6 +246,10 @@ const handleViewportResize = () => {
   ) {
     void closeMobileMenu()
   }
+
+  if (profilePreviewDialog.value?.open && profilePreviewButton.value?.offsetParent === null) {
+    closeProfilePreview()
+  }
 }
 
 onMounted(() => {
@@ -253,6 +279,7 @@ watch(
   () => route.fullPath,
   async () => {
     if (mobileMenuDialog.value?.open) void closeMobileMenu(false)
+    if (profilePreviewDialog.value?.open) closeProfilePreview()
 
     await nextTick()
     refreshSections()
@@ -275,6 +302,10 @@ onBeforeUnmount(() => {
     shouldRestoreMenuButtonFocus = false
     mobileMenuDialog.value.close()
   }
+
+  if (profilePreviewDialog.value?.open) {
+    profilePreviewDialog.value.close()
+  }
 })
 </script>
 
@@ -285,23 +316,33 @@ onBeforeUnmount(() => {
     </div>
 
     <div class="container header-inner">
-      <NuxtLink
-        class="brand"
-        to="/"
-        :aria-label="`${siteConfig.fullName}, home`"
-        @click="handleBrandNavigation"
-      >
-        <span class="brand-mark" aria-hidden="true">
-          <img
-            v-if="isProfileImageAvailable"
-            :src="siteConfig.profileImage"
-            alt=""
-            @error="isProfileImageAvailable = false"
-          />
-          <span v-else>{{ siteConfig.initials }}</span>
+      <div class="brand">
+        <button
+          v-if="isProfileImageAvailable"
+          ref="profilePreviewButton"
+          class="brand-photo-button"
+          type="button"
+          :aria-label="`Enlarge portrait of ${siteConfig.fullName}`"
+          aria-controls="profile-preview"
+          :aria-expanded="isProfilePreviewOpen"
+          @click="openProfilePreview"
+        >
+          <span class="brand-mark">
+            <img :src="siteConfig.profileImage" alt="" @error="isProfileImageAvailable = false" />
+          </span>
+        </button>
+        <span v-else class="brand-mark" aria-hidden="true">
+          <span>{{ siteConfig.initials }}</span>
         </span>
-        <span class="brand-name">{{ siteConfig.fullName }}</span>
-      </NuxtLink>
+        <NuxtLink
+          class="brand-name-link"
+          to="/"
+          :aria-label="`${siteConfig.fullName}, home`"
+          @click="handleBrandNavigation"
+        >
+          <span class="brand-name">{{ siteConfig.fullName }}</span>
+        </NuxtLink>
+      </div>
 
       <nav class="desktop-nav" aria-label="Primary navigation">
         <ul class="nav-list">
@@ -432,6 +473,34 @@ onBeforeUnmount(() => {
       </div>
     </dialog>
   </Teleport>
+
+  <Teleport to="body">
+    <dialog
+      id="profile-preview"
+      ref="profilePreviewDialog"
+      class="profile-preview-dialog"
+      aria-labelledby="profile-preview-title"
+      @click.self="closeProfilePreview"
+      @close="handleProfilePreviewClosed"
+    >
+      <button
+        class="profile-preview-close"
+        type="button"
+        aria-label="Close portrait preview"
+        autofocus
+        @click="closeProfilePreview"
+      >
+        <span aria-hidden="true">×</span>
+      </button>
+
+      <div class="profile-preview-content">
+        <img :src="siteConfig.profileImage" :alt="`Portrait of ${siteConfig.fullName}`" />
+      </div>
+      <p id="profile-preview-title" class="visually-hidden">
+        Portrait of {{ siteConfig.fullName }}
+      </p>
+    </dialog>
+  </Teleport>
 </template>
 
 <style scoped lang="scss">
@@ -483,6 +552,21 @@ onBeforeUnmount(() => {
   color: var(--color-text);
   font-weight: 720;
   letter-spacing: -0.02em;
+}
+
+.brand-photo-button {
+  width: 2.35rem;
+  height: 2.35rem;
+  display: block;
+  flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.brand-name-link {
+  color: inherit;
   text-decoration: none;
 }
 
@@ -684,6 +768,78 @@ onBeforeUnmount(() => {
   background: rgb(5 9 8 / 72%);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
+}
+
+.profile-preview-dialog {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  display: none;
+  place-items: center;
+  margin: 0;
+  padding: max(1.5rem, env(safe-area-inset-top)) max(1.5rem, env(safe-area-inset-right))
+    max(1.5rem, env(safe-area-inset-bottom)) max(1.5rem, env(safe-area-inset-left));
+  overflow: hidden;
+  border: 0;
+  background: rgb(8 10 12 / 76%);
+  backdrop-filter: blur(8px) saturate(110%);
+  -webkit-backdrop-filter: blur(8px) saturate(110%);
+}
+
+.profile-preview-dialog[open] {
+  display: grid;
+}
+
+.profile-preview-dialog::backdrop {
+  background: rgb(0 0 0 / 48%);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.profile-preview-content {
+  width: min(72vw, 30rem, 58dvh);
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 30%);
+}
+
+.profile-preview-content img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center 24%;
+}
+
+.profile-preview-close {
+  position: absolute;
+  top: max(1.25rem, env(safe-area-inset-top));
+  right: max(1.25rem, env(safe-area-inset-right));
+  width: 2.5rem;
+  height: 2.5rem;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 0.8rem;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.profile-preview-close:hover {
+  background: rgb(255 255 255 / 12%);
+}
+
+.profile-preview-close span {
+  font-size: 1.8rem;
+  font-weight: 300;
+  line-height: 1;
 }
 
 .mobile-menu-shell {
