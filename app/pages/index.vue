@@ -262,6 +262,8 @@ useHead({
 @use '@/assets/css/breakpoints' as bp;
 
 .hero {
+  --hero-section-space: clamp(2rem, 4vw, 3rem);
+
   min-height: calc(100svh - 4rem);
   display: grid;
   /* position: relative; */
@@ -391,7 +393,7 @@ h1 span {
 }
 
 .hero-stats {
-  margin-top: clamp(1rem, 2vw, 1.5rem);
+  margin-top: var(--hero-section-space);
 }
 
 .hero-stats-list {
