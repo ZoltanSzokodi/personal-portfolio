@@ -800,7 +800,8 @@ h1 span {
   .hero-grid {
     grid-template-columns: 1fr;
     align-items: start;
-    gap: 3.5rem;
+    column-gap: 0;
+    row-gap: var(--hero-section-space);
   }
 
   .profile-card {

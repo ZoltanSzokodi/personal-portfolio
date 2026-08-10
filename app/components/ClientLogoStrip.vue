@@ -118,6 +118,10 @@ import SolitLogo from './SVGs/SolitLogo.vue'
 }
 
 @media (max-width: 60rem) {
+  .hero-clients {
+    margin-top: 0;
+  }
+
   .hero-clients ul {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 2rem clamp(2.5rem, 7vw, 4rem);
