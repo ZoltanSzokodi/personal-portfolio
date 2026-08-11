@@ -3,21 +3,6 @@ import { projects } from '#shared/data/projects'
 import { siteConfig } from '#shared/data/site'
 
 const canonicalUrl = useCanonicalUrl('/')
-const isProfileImageAvailable = ref(false)
-
-onMounted(() => {
-  const profileImage = new Image()
-
-  profileImage.addEventListener(
-    'load',
-    () => {
-      isProfileImageAvailable.value = true
-    },
-    { once: true },
-  )
-
-  profileImage.src = siteConfig.profileImage
-})
 
 const skills = [
   'React Native',
@@ -61,8 +46,7 @@ useHead({
 <template>
   <div>
     <section class="hero section" aria-labelledby="hero-title">
-      <!-- <div class="container hero-shell"> -->
-      <div class="container hero">
+      <div class="container hero-shell">
         <div class="hero-meta">
           <p>{{ siteConfig.fullName }}</p>
           <p class="hero-meta-type"><span aria-hidden="true" /> Portfolio</p>
@@ -106,33 +90,7 @@ useHead({
             </div>
           </div>
 
-          <figure class="profile-card">
-            <div
-              class="profile-image-placeholder"
-              :role="isProfileImageAvailable ? undefined : 'img'"
-              :aria-label="
-                isProfileImageAvailable ? undefined : `Portrait placeholder for ${siteConfig.name}`
-              "
-            >
-              <img
-                v-if="isProfileImageAvailable"
-                :src="siteConfig.profileImage"
-                :alt="`Portrait of ${siteConfig.fullName}`"
-                @error="isProfileImageAvailable = false"
-              />
-              <template v-else>
-                <span aria-hidden="true">{{ siteConfig.initials }}</span>
-                <small aria-hidden="true">Portrait placeholder</small>
-              </template>
-            </div>
-            <figcaption>
-              <div class="profile-identity">
-                <strong>{{ siteConfig.fullName }}</strong>
-                <span>{{ siteConfig.location }}</span>
-              </div>
-              <p><span aria-hidden="true" /> {{ siteConfig.role }}</p>
-            </figcaption>
-          </figure>
+          <ProfileCardPlayground />
 
           <ClientLogoStrip />
         </div>
@@ -265,10 +223,16 @@ useHead({
   --hero-section-space: clamp(2rem, 4vw, 3rem);
 
   min-height: calc(100svh - 4rem);
+  position: relative;
   display: grid;
-  /* position: relative; */
   overflow: hidden;
   padding: 0;
+}
+
+.hero-shell {
+  min-height: inherit;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
 }
 
 /* .hero::before {
@@ -325,9 +289,9 @@ useHead({
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(17rem, 0.55fr);
+  grid-template-columns: minmax(0, 7fr) minmax(22rem, 5fr);
   align-items: center;
-  column-gap: clamp(3rem, 9vw, 8.5rem);
+  column-gap: clamp(2rem, 5vw, 6rem);
   row-gap: 0;
   padding-block: 0;
 }
@@ -475,132 +439,6 @@ h1 span {
   bottom: 0.2rem;
 }
 
-.profile-card {
-  width: min(100%, 17.3rem);
-  justify-self: end;
-  margin: 0;
-  overflow: hidden;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-lg);
-  background: color-mix(in srgb, var(--color-surface) 82%, transparent);
-  box-shadow: 0 1.5rem 4rem rgb(23 32 29 / 10%);
-}
-
-.profile-image-placeholder {
-  aspect-ratio: 4 / 5;
-  position: relative;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 24% 24%, rgb(255 255 255 / 86%), transparent 22%),
-    linear-gradient(145deg, var(--color-accent-soft), #a8d9c7 58%, var(--color-accent));
-}
-
-.profile-image-placeholder > img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  object-position: center 24%;
-}
-
-/* .profile-image-placeholder::before,
-.profile-image-placeholder::after {
-  content: '';
-  position: absolute;
-  border: 1px solid rgb(255 255 255 / 38%);
-  border-radius: 50%;
-} */
-
-/* .profile-image-placeholder::before {
-  width: 18rem;
-  height: 18rem;
-  top: -6rem;
-  right: -9rem;
-}
-
-.profile-image-placeholder::after {
-  width: 12rem;
-  height: 12rem;
-  bottom: -5rem;
-  left: -4rem;
-} */
-
-.profile-image-placeholder > span {
-  position: relative;
-  z-index: 1;
-  color: color-mix(in srgb, var(--color-text) 82%, transparent);
-  font-family: var(--font-mono);
-  font-size: clamp(3.5rem, 7vw, 5.5rem);
-  font-weight: 750;
-  letter-spacing: -0.08em;
-}
-
-.profile-image-placeholder small {
-  position: absolute;
-  right: 1rem;
-  bottom: 1rem;
-  left: 1rem;
-  z-index: 1;
-  color: color-mix(in srgb, var(--color-text) 64%, transparent);
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.1em;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.profile-card figcaption {
-  padding: 1.15rem 1.25rem 1.25rem;
-}
-
-.profile-identity {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.profile-identity strong {
-  font-size: 1rem;
-}
-
-.profile-identity span {
-  color: var(--color-muted);
-  font-size: 0.72rem;
-  text-align: right;
-}
-
-.profile-card figcaption p {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 0;
-  padding-top: 0.65rem;
-  color: var(--color-muted);
-  font-size: 0.78rem;
-}
-
-.profile-card figcaption p span {
-  width: 0.4rem;
-  height: 0.4rem;
-  position: relative;
-  flex: 0 0 auto;
-  border-radius: 50%;
-  background: var(--color-accent);
-  box-shadow: 0 0 0 0.22rem var(--color-accent-soft);
-}
-
-.profile-card figcaption p span::after {
-  content: '';
-  position: absolute;
-  inset: -0.25rem;
-  border: 1px solid var(--color-accent);
-  border-radius: inherit;
-  animation: availability-pulse 2s ease-out infinite;
-}
-
 .hero-footer {
   height: 2rem;
   min-height: 0;
@@ -635,22 +473,6 @@ h1 span {
 
 .hero-footer a:hover {
   color: var(--color-text);
-}
-
-@keyframes availability-pulse {
-  0% {
-    opacity: 0.5;
-    transform: scale(0.75);
-    background-color: var(--color-accent);
-  }
-  50% {
-    opacity: 0.25;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(1.25);
-  }
 }
 
 .section-heading {
@@ -814,10 +636,6 @@ h1 span {
     align-items: start;
     column-gap: 0;
     row-gap: var(--hero-section-space);
-  }
-
-  .profile-card {
-    display: none;
   }
 
   .project-grid {
