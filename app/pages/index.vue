@@ -398,7 +398,7 @@ h1 span {
 .hero-stats-list > div {
   min-width: 0;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   gap: 0.45rem;
   padding-left: 1rem;
   border-left: 2px solid var(--color-accent-soft);
@@ -411,6 +411,7 @@ h1 span {
 
 .hero-stats-list dd {
   margin: 0;
+  order: -1;
   font-size: clamp(1.65rem, 3vw, 2.25rem);
   font-weight: 650;
   letter-spacing: -0.045em;
