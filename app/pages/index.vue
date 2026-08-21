@@ -22,6 +22,10 @@ const heroStats = [
   { value: '250+', label: 'Production releases' },
 ] as const
 
+const heroStatsElement = ref<HTMLElement | null>(null)
+const areHeroStatsActive = ref(false)
+let heroStatsObserver: IntersectionObserver | undefined
+
 const heroContactOrder = ['GitHub', 'LinkedIn', 'Email'] as const
 const heroContacts = heroContactOrder.flatMap((label) => {
   const contact = siteConfig.contacts.find((item) => item.label === label)
@@ -41,6 +45,30 @@ useSeoMeta({
 useHead({
   link: [{ rel: 'canonical', href: canonicalUrl }],
 })
+
+onMounted(() => {
+  const statsElement = heroStatsElement.value
+  if (!statsElement) return
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    areHeroStatsActive.value = true
+    return
+  }
+
+  heroStatsObserver = new IntersectionObserver(
+    ([entry]) => {
+      if (!entry?.isIntersecting) return
+
+      areHeroStatsActive.value = true
+      heroStatsObserver?.disconnect()
+    },
+    { threshold: 0.35 },
+  )
+
+  heroStatsObserver.observe(statsElement)
+})
+
+onBeforeUnmount(() => heroStatsObserver?.disconnect())
 </script>
 
 <template>
@@ -64,12 +92,12 @@ useHead({
               TypeScript at the core and a growing focus on Vue and Nuxt.
             </p>
 
-            <div class="hero-stats" aria-labelledby="hero-stats-title">
+            <div ref="heroStatsElement" class="hero-stats" aria-labelledby="hero-stats-title">
               <p class="hero-detail-label">By the numbers</p>
               <dl class="hero-stats-list">
-                <div v-for="stat in heroStats" :key="stat.label">
+                <div v-for="(stat, index) in heroStats" :key="stat.label">
                   <dt>{{ stat.label }}</dt>
-                  <dd>{{ stat.value }}</dd>
+                  <dd><SlotCounter :value="stat.value" :active="areHeroStatsActive" :delay="index * 140" /></dd>
                 </div>
               </dl>
             </div>
