@@ -46,6 +46,10 @@ const reelStyle = (digit: string, index: number) => ({
   overflow: hidden;
 }
 
+.slot-counter__window + .slot-counter__window {
+  margin-left: -0.1em;
+}
+
 .slot-counter__reel {
   display: flex;
   flex-direction: column;
