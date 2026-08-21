@@ -123,9 +123,18 @@ const { theme } = useTheme()
   text-decoration: none;
 }
 
+.hero-clients li > a > svg {
+  transition: filter 160ms ease;
+}
+
 /* Native brand colors in light mode; grayscale only this strip's SVGs in dark mode. */
 .hero-clients--dark li > a > svg {
   filter: brightness(0) invert(0.62);
+}
+
+.hero-clients--dark li > a:hover > svg,
+.hero-clients--dark li > a:focus-visible > svg {
+  filter: brightness(0) invert(0.92);
 }
 
 @media (max-width: 60rem) {
