@@ -38,10 +38,10 @@ defineProps<{
 }
 
 .section-terminal-title--inverse .section-terminal-title__prompt {
-  color: #708079;
+  color: var(--color-terminal-muted);
 }
 
 .section-terminal-title--inverse .section-terminal-title__command {
-  color: #83d7b7;
+  color: var(--color-terminal-accent);
 }
 </style>

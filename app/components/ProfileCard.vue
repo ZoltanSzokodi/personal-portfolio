@@ -57,7 +57,7 @@ onMounted(() => {
   border: 1px solid var(--color-line);
   border-radius: var(--radius-lg);
   background: color-mix(in srgb, var(--color-surface) 82%, transparent);
-  box-shadow: 0 1.5rem 4rem rgb(23 32 29 / 10%);
+  box-shadow: 0 1.5rem 4rem color-mix(in srgb, var(--color-text) 10%, transparent);
   user-select: none;
 }
 
@@ -68,8 +68,13 @@ onMounted(() => {
   place-items: center;
   overflow: hidden;
   background:
-    radial-gradient(circle at 24% 24%, rgb(255 255 255 / 86%), transparent 22%),
-    linear-gradient(145deg, var(--color-accent-soft), #a8d9c7 58%, var(--color-accent));
+    radial-gradient(circle at 24% 24%, var(--color-profile-highlight), transparent 22%),
+    linear-gradient(
+      145deg,
+      var(--color-accent-soft),
+      var(--color-profile-gradient) 58%,
+      var(--color-accent)
+    );
 }
 
 .profile-image-placeholder > img {

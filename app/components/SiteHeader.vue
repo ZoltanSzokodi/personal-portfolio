@@ -758,14 +758,14 @@ onBeforeUnmount(() => {
   overflow-y: auto;
   overscroll-behavior: contain;
   border: 0;
-  border-left: 1px solid #3b4742;
-  background: var(--color-text);
-  color: var(--color-bg);
-  box-shadow: -2rem 0 5rem rgb(0 0 0 / 26%);
+  border-left: 1px solid var(--color-inverse-line);
+  background: var(--color-inverse-bg);
+  color: var(--color-inverse-text);
+  box-shadow: -2rem 0 5rem color-mix(in srgb, var(--color-text) 26%, transparent);
 }
 
 .mobile-menu-dialog::backdrop {
-  background: rgb(5 9 8 / 72%);
+  background: var(--color-overlay);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
 }
@@ -785,7 +785,7 @@ onBeforeUnmount(() => {
     max(1.5rem, env(safe-area-inset-bottom)) max(1.5rem, env(safe-area-inset-left));
   overflow: hidden;
   border: 0;
-  background: rgb(8 10 12 / 76%);
+  background: var(--color-overlay);
   backdrop-filter: blur(8px) saturate(110%);
   -webkit-backdrop-filter: blur(8px) saturate(110%);
 }
@@ -795,7 +795,7 @@ onBeforeUnmount(() => {
 }
 
 .profile-preview-dialog::backdrop {
-  background: rgb(0 0 0 / 48%);
+  background: color-mix(in srgb, var(--color-overlay) 64%, transparent);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
 }
@@ -805,7 +805,7 @@ onBeforeUnmount(() => {
   aspect-ratio: 1;
   overflow: hidden;
   border-radius: 50%;
-  box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 30%);
+  box-shadow: 0 1.5rem 4rem var(--color-shadow);
 }
 
 .profile-preview-content img {
@@ -828,12 +828,12 @@ onBeforeUnmount(() => {
   border: 0;
   border-radius: 0.8rem;
   background: transparent;
-  color: #fff;
+  color: var(--color-inverse-text);
   cursor: pointer;
 }
 
 .profile-preview-close:hover {
-  background: rgb(255 255 255 / 12%);
+  background: color-mix(in srgb, var(--color-inverse-text) 12%, transparent);
 }
 
 .profile-preview-close span {
@@ -854,7 +854,7 @@ onBeforeUnmount(() => {
   align-items: flex-start;
   justify-content: space-between;
   gap: 2rem;
-  border-bottom: 1px solid #3b4742;
+  border-bottom: 1px solid var(--color-inverse-line);
 }
 
 .mobile-menu-heading p {
@@ -873,7 +873,7 @@ onBeforeUnmount(() => {
   padding: 0;
   border: 0;
   background: transparent;
-  color: #bcc8c3;
+  color: var(--color-inverse-muted);
   cursor: pointer;
 }
 
@@ -884,7 +884,7 @@ onBeforeUnmount(() => {
 }
 
 .mobile-menu-close:hover {
-  color: var(--color-bg);
+  color: var(--color-inverse-text);
 }
 
 .mobile-nav-list {
@@ -899,8 +899,8 @@ onBeforeUnmount(() => {
   grid-template-columns: 2.5rem minmax(0, 1fr);
   align-items: center;
   gap: 0.75rem;
-  border-bottom: 1px solid #3b4742;
-  color: #a9b5b0;
+  border-bottom: 1px solid var(--color-inverse-line);
+  color: var(--color-inverse-muted);
   font-size: clamp(1.35rem, 6vw, 1.9rem);
   font-weight: 550;
   letter-spacing: -0.035em;
@@ -909,7 +909,7 @@ onBeforeUnmount(() => {
 }
 
 .mobile-nav-number {
-  color: #708079;
+  color: var(--color-terminal-muted);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 500;
@@ -919,12 +919,12 @@ onBeforeUnmount(() => {
 
 .mobile-nav-link:hover,
 .mobile-nav-link--active {
-  color: var(--color-bg);
+  color: var(--color-inverse-text);
 }
 
 .mobile-nav-link:hover .mobile-nav-number,
 .mobile-nav-link--active .mobile-nav-number {
-  color: #83d7b7;
+  color: var(--color-terminal-accent);
 }
 
 .mobile-nav-link--placeholder {

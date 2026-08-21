@@ -261,7 +261,7 @@ onBeforeUnmount(() => {
   padding: 0.5rem 1rem;
   border-radius: 999px;
   background: var(--color-accent);
-  box-shadow: 0 0.75rem 2rem rgb(23 32 29 / 16%);
+  box-shadow: 0 0.75rem 2rem color-mix(in srgb, var(--color-text) 16%, transparent);
   color: var(--color-surface);
   font-size: 0.78rem;
   font-weight: 700;

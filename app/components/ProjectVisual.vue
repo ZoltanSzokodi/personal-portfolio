@@ -80,7 +80,7 @@ defineProps<{
   height: 16rem;
   top: -7rem;
   right: -4rem;
-  background: rgb(255 255 255 / 28%);
+  background: var(--color-project-highlight);
 }
 
 .project-visual::after {
@@ -88,19 +88,19 @@ defineProps<{
   height: 10rem;
   bottom: -5rem;
   left: -2rem;
-  border: 1px solid rgb(255 255 255 / 45%);
+  border: 1px solid var(--color-project-highlight-line);
 }
 
 .project-visual--fieldkit {
-  background: #d9eee4;
+  background: var(--color-project-fieldkit);
 }
 
 .project-visual--gather {
-  background: #f2e2d4;
+  background: var(--color-project-gather);
 }
 
 .project-visual--portfolio {
-  background: #dfe7f0;
+  background: var(--color-project-portfolio);
 }
 
 .device {
@@ -109,8 +109,8 @@ defineProps<{
   padding: 1.1rem 0.9rem 0.85rem;
   border: 5px solid var(--color-text);
   border-radius: 1.65rem;
-  background: #fbfcf9;
-  box-shadow: 0 1.5rem 3rem rgb(23 32 29 / 18%);
+  background: var(--color-project-screen);
+  box-shadow: 0 1.5rem 3rem color-mix(in srgb, var(--color-text) 18%, transparent);
   transform: rotate(3deg);
 }
 
@@ -168,7 +168,7 @@ defineProps<{
 .browser-eyebrow {
   display: block;
   border-radius: 999px;
-  background: #c7d1cc;
+  background: var(--color-project-detail);
 }
 
 .screen-title {
@@ -197,7 +197,7 @@ defineProps<{
   margin-block: 1rem;
   padding: 0.65rem;
   border-radius: 0.65rem;
-  background: #e6ede9;
+  background: var(--color-project-detail-soft);
 }
 
 .screen-icon {
@@ -207,7 +207,7 @@ defineProps<{
   place-items: center;
   border-radius: 0.4rem;
   background: var(--color-accent);
-  color: white;
+  color: var(--color-on-accent);
   font-size: 0.7rem;
 }
 
@@ -216,7 +216,7 @@ defineProps<{
   padding: 0.6rem;
   border-radius: 0.55rem;
   background: var(--color-text);
-  color: white;
+  color: var(--color-on-accent);
   text-align: center;
   text-transform: none;
 }
@@ -224,7 +224,7 @@ defineProps<{
 .search-row {
   gap: 0.55rem;
   padding: 0.6rem;
-  border: 1px solid #d8d2cc;
+  border: 1px solid var(--color-project-detail-warm-line);
   border-radius: 0.75rem;
 }
 
@@ -243,7 +243,7 @@ defineProps<{
 .filter-row span {
   padding: 0.3rem 0.45rem;
   border-radius: 999px;
-  background: #eee8e2;
+  background: var(--color-project-detail-warm);
   font-size: 0.42rem;
   text-transform: none;
 }
@@ -253,12 +253,12 @@ defineProps<{
   margin-top: 0.55rem;
   padding: 0.75rem;
   border-radius: 0.75rem;
-  background: #eee8e2;
+  background: var(--color-project-detail-warm);
 }
 
 .event-card--primary {
-  background: #2e3935;
-  color: white;
+  background: var(--color-inverse-bg);
+  color: var(--color-inverse-text);
 }
 
 .event-date {
@@ -268,7 +268,7 @@ defineProps<{
   flex: none;
   place-items: center;
   border-radius: 0.55rem;
-  background: rgb(255 255 255 / 75%);
+  background: var(--color-project-screen-highlight);
   color: var(--color-text);
 }
 
@@ -293,8 +293,8 @@ defineProps<{
   border: 4px solid var(--color-text);
   border-radius: 1rem;
   overflow: hidden;
-  background: #fbfcf9;
-  box-shadow: 0 1.5rem 3rem rgb(23 32 29 / 16%);
+  background: var(--color-project-screen);
+  box-shadow: 0 1.5rem 3rem color-mix(in srgb, var(--color-text) 16%, transparent);
   transform: rotate(1.5deg);
 }
 
@@ -309,7 +309,7 @@ defineProps<{
   width: 0.4rem;
   height: 0.4rem;
   border-radius: 50%;
-  background: #9aa9a2;
+  background: var(--color-project-detail-muted);
 }
 
 .browser-body {
@@ -328,7 +328,7 @@ defineProps<{
   width: 1.35rem;
   height: 0.22rem;
   border-radius: 999px;
-  background: #9aa9a2;
+  background: var(--color-project-detail-muted);
 }
 
 .browser-eyebrow {
@@ -359,7 +359,7 @@ defineProps<{
 .browser-grid i {
   height: 3.2rem;
   border-radius: 0.5rem;
-  background: #dbe4df;
+  background: var(--color-project-detail-grid);
 }
 
 @include bp.mobile-and-down {

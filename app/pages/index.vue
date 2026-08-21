@@ -555,24 +555,20 @@ h1 span {
 }
 
 .contact-section {
-  background: var(--color-text);
-  color: var(--color-bg);
-}
-
-.contact-section {
-  color: #83d7b7;
+  background: var(--color-inverse-bg);
+  color: var(--color-inverse-text);
 }
 
 .contact-copy > p {
   margin-top: 0;
-  color: #bcc8c3;
+  color: var(--color-inverse-muted);
   font-size: clamp(1.15rem, 2.5vw, 1.45rem);
 }
 
 .contact-list {
   margin: 2.5rem 0 0;
   padding: 0;
-  border-top: 1px solid #3b4742;
+  border-top: 1px solid var(--color-inverse-line);
   list-style: none;
 }
 
@@ -582,13 +578,13 @@ h1 span {
   grid-template-columns: 5rem 1fr auto;
   align-items: center;
   gap: 1rem;
-  border-bottom: 1px solid #3b4742;
-  color: var(--color-bg);
+  border-bottom: 1px solid var(--color-inverse-line);
+  color: var(--color-inverse-text);
   text-decoration: none;
 }
 
 .contact-list a > span:first-child {
-  color: #90a29a;
+  color: var(--color-inverse-faint);
   font-family: var(--font-mono);
   font-size: 0.7rem;
   text-transform: uppercase;
@@ -603,11 +599,11 @@ h1 span {
 }
 
 .contact-list a > span:last-child {
-  color: #83d7b7;
+  color: var(--color-terminal-accent);
 }
 
 .contact-list a:hover strong {
-  color: #83d7b7;
+  color: var(--color-terminal-accent);
 }
 
 @include bp.tablet-and-down {

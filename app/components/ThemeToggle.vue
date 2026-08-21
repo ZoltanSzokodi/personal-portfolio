@@ -1,23 +1,21 @@
 <script setup lang="ts">
-const isMoonIcon = ref(false)
+const { theme, toggleTheme } = useTheme()
 
-const toggleThemeIcon = () => {
-  isMoonIcon.value = !isMoonIcon.value
-}
+const nextThemeLabel = computed(() => (theme.value === 'light' ? 'dark' : 'light'))
 </script>
 
 <template>
   <button
     class="theme-toggle"
     type="button"
-    aria-label="Toggle theme icon"
-    title="Theme"
-    :aria-pressed="isMoonIcon"
-    @click="toggleThemeIcon"
+    :aria-label="`Switch to ${nextThemeLabel} theme`"
+    :title="`Switch to ${nextThemeLabel} theme`"
+    :aria-pressed="theme === 'dark'"
+    @click="toggleTheme"
   >
     <span
       class="theme-toggle-icon"
-      :class="{ 'theme-toggle-icon--moon': isMoonIcon }"
+      :class="{ 'theme-toggle-icon--moon': theme === 'dark' }"
       aria-hidden="true"
     >
       <SVGsSunLogo class="theme-toggle-icon__sun" title="" />
