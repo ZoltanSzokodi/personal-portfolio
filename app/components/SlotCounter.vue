@@ -53,7 +53,6 @@ const reelStyle = (digit: string, index: number) => ({
 .slot-counter__reel {
   display: flex;
   flex-direction: column;
-  transition: transform 1.25s cubic-bezier(0.16, 1, 0.3, 1) var(--slot-delay);
   will-change: transform;
 }
 
@@ -63,12 +62,26 @@ const reelStyle = (digit: string, index: number) => ({
 }
 
 .slot-counter--active .slot-counter__reel {
-  transform: translateY(calc(var(--slot-stop) * -0.9em));
+  animation: slot-reel-spin 1.25s cubic-bezier(0.16, 1, 0.3, 1) var(--slot-delay) both;
+}
+
+@keyframes slot-reel-spin {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(calc(var(--slot-stop) * -0.9em));
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .slot-counter__reel {
-    transition: none;
+    animation: none;
+  }
+
+  .slot-counter--active .slot-counter__reel {
+    transform: translateY(calc(var(--slot-stop) * -0.9em));
   }
 }
 </style>
