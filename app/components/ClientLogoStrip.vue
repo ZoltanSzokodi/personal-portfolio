@@ -128,13 +128,45 @@ const { theme } = useTheme()
 }
 
 /* Native brand colors in light mode; grayscale only this strip's SVGs in dark mode. */
-.hero-clients--dark li > a > svg {
+.hero-clients--dark li > a > svg:not(.client-logo-netzkino) {
   filter: brightness(0) invert(0.62);
 }
 
-.hero-clients--dark li > a:hover > svg,
-.hero-clients--dark li > a:focus-visible > svg {
+.hero-clients--dark li > a:hover > svg:not(.client-logo-netzkino),
+.hero-clients--dark li > a:focus-visible > svg:not(.client-logo-netzkino) {
   filter: brightness(0) invert(0.92);
+}
+
+.hero-clients--dark :deep(.client-logo-netzkino .netzkino-wordmark),
+.hero-clients--dark :deep(.client-logo-netzkino .netzkino-badge-shell) {
+  fill: #9e9e9e;
+}
+
+.hero-clients--dark :deep(.client-logo-netzkino .netzkino-badge-surface) {
+  fill: #6d7888;
+}
+
+.hero-clients--dark :deep(.client-logo-netzkino .netzkino-badge-map) {
+  fill: #7f8c9e;
+}
+
+.hero-clients--dark :deep(.client-logo-netzkino .netzkino-badge-grid) {
+  stroke: #536071;
+}
+
+.hero-clients--dark :deep(.client-logo-netzkino .netzkino-badge-number-outline) {
+  stroke: #dce3ec;
+}
+
+.hero-clients--dark :deep(.client-logo-netzkino .netzkino-badge-number) {
+  fill: #101714;
+}
+
+.hero-clients--dark li > a:hover :deep(.client-logo-netzkino .netzkino-wordmark),
+.hero-clients--dark li > a:hover :deep(.client-logo-netzkino .netzkino-badge-shell),
+.hero-clients--dark li > a:focus-visible :deep(.client-logo-netzkino .netzkino-wordmark),
+.hero-clients--dark li > a:focus-visible :deep(.client-logo-netzkino .netzkino-badge-shell) {
+  fill: #ebebeb;
 }
 
 @media (max-width: 60rem) {
