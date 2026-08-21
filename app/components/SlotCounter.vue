@@ -20,7 +20,12 @@ const reelStyle = (digit: string, index: number) => ({
 </script>
 
 <template>
-  <span class="slot-counter" :class="{ 'slot-counter--active': active }" :aria-label="value">
+  <span
+    class="slot-counter"
+    :class="{ 'slot-counter--active': active }"
+    :style="{ '--slot-counter-delay': `${delay}ms` }"
+    :aria-label="value"
+  >
     <span v-for="(digit, index) in digits" :key="index" class="slot-counter__window" aria-hidden="true">
       <span class="slot-counter__reel" :style="reelStyle(digit, index)">
         <span v-for="(reelDigit, reelIndex) in reelDigits" :key="reelIndex">{{ reelDigit }}</span>
@@ -61,8 +66,22 @@ const reelStyle = (digit: string, index: number) => ({
   line-height: 0.9;
 }
 
+.slot-counter--active {
+  animation: slot-counter-fade-in 420ms ease-out var(--slot-counter-delay) both;
+}
+
 .slot-counter--active .slot-counter__reel {
   animation: slot-reel-spin 1.25s cubic-bezier(0.16, 1, 0.3, 1) var(--slot-delay) both;
+}
+
+@keyframes slot-counter-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slot-reel-spin {
@@ -77,6 +96,10 @@ const reelStyle = (digit: string, index: number) => ({
 
 @media (prefers-reduced-motion: reduce) {
   .slot-counter__reel {
+    animation: none;
+  }
+
+  .slot-counter--active {
     animation: none;
   }
 
