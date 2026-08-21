@@ -5,10 +5,16 @@ import FlexgoldLogo from './SVGs/FlexgoldLogo.vue'
 import LeonineLogo from './SVGs/LeonineLogo.vue'
 import NetzkinoLogo from './SVGs/NetzkinoLogo.vue'
 import SolitLogo from './SVGs/SolitLogo.vue'
+
+const { theme } = useTheme()
 </script>
 
 <template>
-  <div class="hero-clients" aria-labelledby="hero-clients-title">
+  <div
+    class="hero-clients"
+    :class="{ 'hero-clients--dark': theme === 'dark' }"
+    aria-labelledby="hero-clients-title"
+  >
     <p id="hero-clients-title" class="hero-detail-label">Shipped production apps for…</p>
     <ul aria-label="Client logos">
       <li>
@@ -115,6 +121,11 @@ import SolitLogo from './SVGs/SolitLogo.vue'
   color: inherit;
   line-height: 0;
   text-decoration: none;
+}
+
+/* Native brand colors in light mode; grayscale only this strip's SVGs in dark mode. */
+.hero-clients--dark li > a > svg {
+  filter: brightness(0) invert(0.62);
 }
 
 @media (max-width: 60rem) {
