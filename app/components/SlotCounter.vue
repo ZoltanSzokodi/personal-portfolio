@@ -17,13 +17,16 @@ const reelStyle = (digit: string, index: number) => ({
   '--slot-stop': REEL_CYCLES * 10 + Number(digit),
   '--slot-delay': `${props.delay + index * 90}ms`,
 })
+
+const suffixStyle = computed(() => ({
+  '--slot-suffix-delay': `${props.delay + 1250 + (digits.value.length - 1) * 90}ms`,
+}))
 </script>
 
 <template>
   <span
     class="slot-counter"
     :class="{ 'slot-counter--active': active }"
-    :style="{ '--slot-counter-delay': `${delay}ms` }"
     :aria-label="value"
   >
     <span v-for="(digit, index) in digits" :key="index" class="slot-counter__window" aria-hidden="true">
@@ -31,7 +34,9 @@ const reelStyle = (digit: string, index: number) => ({
         <span v-for="(reelDigit, reelIndex) in reelDigits" :key="reelIndex">{{ reelDigit }}</span>
       </span>
     </span>
-    <span v-if="suffix" aria-hidden="true">{{ suffix }}</span>
+    <span v-if="suffix" class="slot-counter__suffix" :style="suffixStyle" aria-hidden="true">
+      {{ suffix }}
+    </span>
   </span>
 </template>
 
@@ -66,12 +71,12 @@ const reelStyle = (digit: string, index: number) => ({
   line-height: 0.9;
 }
 
-.slot-counter--active {
-  animation: slot-counter-fade-in 420ms ease-out var(--slot-counter-delay) both;
-}
-
 .slot-counter--active .slot-counter__reel {
   animation: slot-reel-spin 1.25s cubic-bezier(0.16, 1, 0.3, 1) var(--slot-delay) both;
+}
+
+.slot-counter--active .slot-counter__suffix {
+  animation: slot-counter-fade-in 240ms ease-out var(--slot-suffix-delay) both;
 }
 
 @keyframes slot-counter-fade-in {
@@ -86,10 +91,12 @@ const reelStyle = (digit: string, index: number) => ({
 
 @keyframes slot-reel-spin {
   from {
+    opacity: 0;
     transform: translateY(0);
   }
 
   to {
+    opacity: 1;
     transform: translateY(calc(var(--slot-stop) * -0.9em));
   }
 }
@@ -99,12 +106,12 @@ const reelStyle = (digit: string, index: number) => ({
     animation: none;
   }
 
-  .slot-counter--active {
-    animation: none;
-  }
-
   .slot-counter--active .slot-counter__reel {
     transform: translateY(calc(var(--slot-stop) * -0.9em));
+  }
+
+  .slot-counter--active .slot-counter__suffix {
+    animation: none;
   }
 }
 </style>
