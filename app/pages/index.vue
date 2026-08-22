@@ -26,6 +26,9 @@ const heroStatsElement = ref<HTMLElement | null>(null)
 const areHeroStatsActive = ref(false)
 const areEarlierRolesVisible = ref(false)
 let heroStatsObserver: IntersectionObserver | undefined
+let experienceCardsObserver: IntersectionObserver | undefined
+let experienceCardsScrollHandler: (() => void) | undefined
+const experienceCardsInFocusRange = new Set<HTMLElement>()
 
 const heroContactOrder = ['GitHub', 'LinkedIn', 'Email'] as const
 const heroContacts = heroContactOrder.flatMap((label) => {
@@ -49,27 +52,79 @@ useHead({
 
 onMounted(() => {
   const statsElement = heroStatsElement.value
-  if (!statsElement) return
-
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (!statsElement || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     areHeroStatsActive.value = true
-    return
+  } else {
+    heroStatsObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return
+
+        areHeroStatsActive.value = true
+        heroStatsObserver?.disconnect()
+      },
+      { threshold: 0.35 },
+    )
+
+    heroStatsObserver.observe(statsElement)
   }
 
-  heroStatsObserver = new IntersectionObserver(
-    ([entry]) => {
-      if (!entry?.isIntersecting) return
+  experienceCardsObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        const card = entry.target as HTMLElement
+        if (entry.isIntersecting) {
+          experienceCardsInFocusRange.add(card)
+        } else {
+          experienceCardsInFocusRange.delete(card)
+        }
+      }
 
-      areHeroStatsActive.value = true
-      heroStatsObserver?.disconnect()
+      experienceCardsScrollHandler?.()
     },
-    { threshold: 0.35 },
+    { rootMargin: '-40% 0px -40% 0px', threshold: 0 },
   )
 
-  heroStatsObserver.observe(statsElement)
+  const experienceCards = document.querySelectorAll<HTMLElement>('.experience-entry__content')
+
+  experienceCardsScrollHandler = () => {
+    const viewportCenter = window.innerHeight / 2
+    let closestCard: HTMLElement | undefined
+    let closestDistance = Number.POSITIVE_INFINITY
+
+    for (const card of experienceCardsInFocusRange) {
+      const cardBounds = card.getBoundingClientRect()
+      const distance = Math.abs(cardBounds.top + cardBounds.height / 2 - viewportCenter)
+
+      if (distance < closestDistance) {
+        closestCard = card
+        closestDistance = distance
+      }
+    }
+
+    experienceCards.forEach((card) => {
+      card.classList.toggle('experience-entry__content--active', card === closestCard)
+    })
+  }
+
+  experienceCards.forEach((card) => {
+    experienceCardsObserver?.observe(card)
+  })
+
+  window.addEventListener('scroll', experienceCardsScrollHandler, { passive: true })
+  window.addEventListener('resize', experienceCardsScrollHandler)
+  experienceCardsScrollHandler()
 })
 
-onBeforeUnmount(() => heroStatsObserver?.disconnect())
+onBeforeUnmount(() => {
+  heroStatsObserver?.disconnect()
+  experienceCardsObserver?.disconnect()
+  experienceCardsInFocusRange.clear()
+
+  if (experienceCardsScrollHandler) {
+    window.removeEventListener('scroll', experienceCardsScrollHandler)
+    window.removeEventListener('resize', experienceCardsScrollHandler)
+  }
+})
 </script>
 
 <template>
@@ -784,6 +839,28 @@ h1 span {
   font-weight: 500;
   letter-spacing: -0.055em;
   line-height: 1;
+}
+
+.experience-entry__content {
+  min-width: 0;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border: 1px solid var(--color-line-soft);
+  border-radius: 1.25rem;
+  background: color-mix(in srgb, var(--color-surface) 72%, transparent);
+  transition:
+    border-color 240ms ease,
+    background-color 240ms ease,
+    box-shadow 240ms ease;
+}
+
+.experience-entry__content--active {
+  border-color: color-mix(in srgb, var(--color-accent) 74%, var(--color-line));
+  background: color-mix(in srgb, var(--color-accent-soft) 38%, var(--color-surface));
+  box-shadow: 0 1rem 2.75rem color-mix(in srgb, var(--color-accent) 12%, transparent);
+}
+
+.experience-entry__content--active h3 {
+  color: var(--color-accent-dark);
 }
 
 .experience-entry__platforms {
