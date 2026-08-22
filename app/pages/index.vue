@@ -22,6 +22,40 @@ const heroStats = [
   { value: '250+', label: 'Production releases' },
 ] as const
 
+const flexgoldHighlights = [
+  'Led cross-platform frontend architecture for Flexgold across web, iOS, and Android.',
+  'Delivered secure identity flows spanning registration, MFA/OTP, passkeys, biometrics, app PINs, and session protection.',
+  'Built backend-configurable screens, dynamic forms, multi-step workflows, validation, autosave, and resilient error recovery.',
+  'Shipped core fintech journeys for gold vaults, savings plans, product and delivery orders, pricing, and bank transfers.',
+  'Created portfolio dashboards with balances, performance insights, premium status, live data updates, and chart visualisations.',
+  'Developed customer engagement features including referrals, sharing, feedback prompts, notifications, PDF actions, and in-app alerts.',
+  'Improved accessibility across reusable controls, forms, loading states, and navigation, aligned with Germany’s Barrierefreiheitsstärkungsgesetz (BFSG) requirements.',
+  'Implemented privacy-aware user tracking, analytics preferences, consent controls, and cookie settings.',
+  'Integrated multilingual chatbot experiences across native and web-based surfaces.',
+] as const
+
+const flexgoldTechnologies = [
+  'React Native',
+  'TypeScript',
+  'React Navigation',
+  'Redux Toolkit',
+  'RTK Query',
+  'Formik',
+  'Jexl',
+  'React Native Paper (MD3)',
+  'WebAuthn / Passkeys',
+  'Firebase',
+  'React Native Reanimated',
+  'Lottie',
+  'Victory Charts',
+  'Storybook',
+  'Jest',
+  'i18next',
+  'REST APIs',
+  'Accessibility',
+  'Bitbucket Pipelines',
+] as const
+
 const heroStatsElement = ref<HTMLElement | null>(null)
 const areHeroStatsActive = ref(false)
 let heroStatsObserver: IntersectionObserver | undefined
@@ -152,6 +186,27 @@ onBeforeUnmount(() => heroStatsObserver?.disconnect())
             platforms.
           </p>
         </div>
+
+        <article class="experience-entry" aria-labelledby="flexgold-role">
+          <div class="experience-entry__meta">
+            <p><span>01</span> 2023 — Present <b>• Live</b></p>
+            <p>Flexgold · Fintech</p>
+          </div>
+
+          <div class="experience-entry__content">
+            <h3 id="flexgold-role">Lead Frontend Architect</h3>
+            <p class="experience-entry__platforms">Web · iOS · Android</p>
+
+            <ul class="experience-entry__highlights">
+              <li v-for="highlight in flexgoldHighlights" :key="highlight">{{ highlight }}</li>
+            </ul>
+            <p class="experience-entry__more">…and much more.</p>
+
+            <ul class="experience-entry__technologies" aria-label="Technologies used at Flexgold">
+              <li v-for="technology in flexgoldTechnologies" :key="technology">{{ technology }}</li>
+            </ul>
+          </div>
+        </article>
 
         <ClientLogoStrip />
       </div>
@@ -535,6 +590,110 @@ h1 span {
   line-height: 1.55;
 }
 
+.experience-entry {
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.32fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 5.5rem);
+  border-top: 1px solid var(--color-line);
+  padding-block: clamp(2rem, 4vw, 3.5rem);
+}
+
+.experience-entry__meta {
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+.experience-entry__meta p {
+  margin: 0;
+}
+
+.experience-entry__meta p + p {
+  margin-top: 0.7rem;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.experience-entry__meta span {
+  color: var(--color-accent);
+}
+
+.experience-entry__meta b {
+  color: var(--color-accent-dark);
+  font-weight: inherit;
+}
+
+.experience-entry__content h3 {
+  margin: 0;
+  font-size: clamp(1.65rem, 2.6vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 1;
+}
+
+.experience-entry__platforms {
+  margin: 0.55rem 0 0;
+  color: var(--color-muted);
+  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+}
+
+.experience-entry__highlights {
+  display: grid;
+  gap: 0.8rem;
+  margin: clamp(1.5rem, 3vw, 2.25rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.experience-entry__highlights li {
+  display: grid;
+  grid-template-columns: 1.15rem minmax(0, 1fr);
+  gap: 0.55rem;
+  color: var(--color-muted);
+  font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+  line-height: 1.45;
+}
+
+.experience-entry__highlights li::before {
+  content: '—';
+  color: var(--color-accent);
+}
+
+.experience-entry__more {
+  margin: 0.9rem 0 0 1.7rem;
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+.experience-entry__technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: clamp(1.5rem, 3vw, 2rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.experience-entry__technologies li {
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-surface) 84%, var(--color-text));
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  padding: 0.46rem 0.65rem;
+}
+
 .section-heading h2,
 .whoami-grid h2,
 .contact-grid h2 {
@@ -680,6 +839,22 @@ h1 span {
     align-items: start;
     column-gap: 0;
     row-gap: var(--hero-section-space);
+  }
+
+  .experience-entry {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .experience-entry__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.75rem 1.5rem;
+  }
+
+  .experience-entry__meta p + p {
+    margin-top: 0;
   }
 
   .project-grid {
