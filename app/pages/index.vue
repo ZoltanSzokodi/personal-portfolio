@@ -226,11 +226,11 @@ onBeforeUnmount(() => {
         >
           <div class="experience-entry__meta">
             <p><span>01</span> 2023 — Present <b>• Live</b></p>
-            <p>Flexgold · Fintech</p>
+            <p class="experience-entry__role">Lead Frontend Architect</p>
           </div>
 
           <div class="experience-entry__content">
-            <h3 id="flexgold-role">Lead Frontend Architect</h3>
+            <h3 id="flexgold-role">Flexgold · Fintech</h3>
             <p class="experience-entry__platforms">Web · iOS · Android</p>
 
             <div class="experience-entry__description">
@@ -255,11 +255,11 @@ onBeforeUnmount(() => {
         >
           <div class="experience-entry__meta">
             <p><span>02</span> 2021 — Present <b>• Live</b></p>
-            <p>ARD Plus · Video on demand</p>
+            <p class="experience-entry__role">Frontend Engineer</p>
           </div>
 
           <div class="experience-entry__content">
-            <h3 id="ardplus-role">Frontend Engineer</h3>
+            <h3 id="ardplus-role">ARD Plus · Video on demand</h3>
             <p class="experience-entry__platforms">Web · iOS · Android · Smart TV</p>
 
             <div class="experience-entry__description">
@@ -282,11 +282,11 @@ onBeforeUnmount(() => {
           <article class="experience-entry" aria-labelledby="solit-role">
             <div class="experience-entry__meta">
               <p><span>03</span> 2020 — 2023</p>
-              <p>SOLIT · Precious-metals investment</p>
+              <p class="experience-entry__role">Frontend Developer</p>
             </div>
 
             <div class="experience-entry__content">
-              <h3 id="solit-role">Frontend Developer</h3>
+              <h3 id="solit-role">SOLIT · Precious-metals investment</h3>
               <p class="experience-entry__platforms">Web · iOS · Android</p>
 
               <div class="experience-entry__description">
@@ -307,11 +307,11 @@ onBeforeUnmount(() => {
           <article class="experience-entry" aria-labelledby="leonine-role">
             <div class="experience-entry__meta">
               <p><span>04</span> 2020 — 2022</p>
-              <p>LEONINE Studios · White-label video on demand</p>
+              <p class="experience-entry__role">Frontend Developer</p>
             </div>
 
             <div class="experience-entry__content">
-              <h3 id="leonine-role">Frontend Developer</h3>
+              <h3 id="leonine-role">LEONINE Studios · White-label video on demand</h3>
               <p class="experience-entry__platforms">Web · iOS · Android · Smart TV</p>
 
               <div class="experience-entry__description">
@@ -337,11 +337,11 @@ onBeforeUnmount(() => {
           >
             <div class="experience-entry__meta">
               <p><span>05</span> 2020</p>
-              <p>Netzkino &amp; Bookwire OS · Online media</p>
+              <p class="experience-entry__role">Junior JavaScript Developer</p>
             </div>
 
             <div class="experience-entry__content">
-              <h3 id="netzkino-bookwire-role">Junior JavaScript Developer</h3>
+              <h3 id="netzkino-bookwire-role">Netzkino &amp; Bookwire OS · Online media</h3>
               <p class="experience-entry__platforms">Web</p>
 
               <div class="experience-entry__description">
@@ -822,6 +822,16 @@ h1 span {
   font-weight: 500;
   letter-spacing: 0;
   text-transform: none;
+}
+
+.experience-entry__meta .experience-entry__role {
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  line-height: 1.6;
+  text-transform: uppercase;
 }
 
 .experience-entry__meta span {
