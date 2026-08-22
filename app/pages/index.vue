@@ -56,6 +56,42 @@ const flexgoldTechnologies = [
   'Bitbucket Pipelines',
 ] as const
 
+const ardPlusHighlights = [
+  'Built video-on-demand playback across web, mobile, and TV, including playback authorisation, DRM-compatible delivery, Android picture-in-picture, and casting.',
+  'Delivered content-discovery journeys: browse screens, categories, content cards, sliders, and movie-detail views.',
+  'Created TV-first experiences for Android TV, Fire TV, Chromecast, WebOS, and Tizen.',
+  'Developed Chromecast receiver and player functionality.',
+  'Built authentication and account journeys: registration, login, email verification, password reset, and account navigation.',
+  'Implemented entitlement-aware access, membership gating, subscription plans, browse-only states, and SVOD, TVOD, and EST purchase flows.',
+  'Delivered checkout and payment flows with Stripe, PayPal, Apple Pay, Google Pay, vouchers, terms acceptance, payment states, redirects, and post-purchase content access.',
+  'Built privacy controls, multi-brand configuration, feature flags, themes, localisation, GraphQL data integrations, and playback/purchase tracking.',
+  'Added responsive web, mobile, and TV navigation, UI motion, purchase modals, and focused E2E coverage for Android TV, Android, and iOS.',
+] as const
+
+const ardPlusTechnologies = [
+  'React Native',
+  'TypeScript',
+  'Next.js',
+  'GraphQL',
+  'Apollo Client',
+  'Google Cast / Chromecast',
+  'AirPlay',
+  'Android TV',
+  'Fire TV',
+  'WebOS',
+  'Tizen',
+  'Stripe',
+  'PayPal',
+  'Apple Pay',
+  'Google Pay',
+  'In-App Purchases',
+  'Lottie',
+  'i18next',
+  'Detox',
+  'Cypress',
+  'Jest',
+] as const
+
 const heroStatsElement = ref<HTMLElement | null>(null)
 const areHeroStatsActive = ref(false)
 let heroStatsObserver: IntersectionObserver | undefined
@@ -204,6 +240,26 @@ onBeforeUnmount(() => heroStatsObserver?.disconnect())
 
             <ul class="experience-entry__technologies" aria-label="Technologies used at Flexgold">
               <li v-for="technology in flexgoldTechnologies" :key="technology">{{ technology }}</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="experience-entry" aria-labelledby="ardplus-role">
+          <div class="experience-entry__meta">
+            <p><span>02</span> 2021 — Present <b>• Live</b></p>
+            <p>ARD Plus · Video on demand</p>
+          </div>
+
+          <div class="experience-entry__content">
+            <h3 id="ardplus-role">Frontend Engineer</h3>
+            <p class="experience-entry__platforms">Web · iOS · Android · Smart TV</p>
+
+            <ul class="experience-entry__highlights">
+              <li v-for="highlight in ardPlusHighlights" :key="highlight">{{ highlight }}</li>
+            </ul>
+
+            <ul class="experience-entry__technologies" aria-label="Technologies used at ARD Plus">
+              <li v-for="technology in ardPlusTechnologies" :key="technology">{{ technology }}</li>
             </ul>
           </div>
         </article>
