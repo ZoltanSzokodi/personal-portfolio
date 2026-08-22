@@ -119,8 +119,6 @@ onBeforeUnmount(() => heroStatsObserver?.disconnect())
           </div>
 
           <ProfileCardPlayground />
-
-          <ClientLogoStrip />
         </div>
 
         <footer class="hero-footer">
@@ -151,6 +149,8 @@ onBeforeUnmount(() => heroStatsObserver?.disconnect())
           <h2 id="experience-title">Production work, distilled.</h2>
           <p>Selected roles, responsibilities, and measurable outcomes will be added here.</p>
         </div>
+
+        <ClientLogoStrip />
       </div>
     </section>
 
