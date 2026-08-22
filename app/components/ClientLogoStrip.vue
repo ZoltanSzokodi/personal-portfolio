@@ -112,6 +112,7 @@ const { theme } = useTheme()
   width: 100%;
   grid-column: 1 / -1;
   margin-top: var(--hero-section-space, clamp(2rem, 4vw, 3rem));
+  margin-bottom: clamp(3rem, 6vw, 6rem);
   padding-top: 0;
 }
 
@@ -186,6 +187,7 @@ const { theme } = useTheme()
 @media (max-width: 60rem) {
   .hero-clients {
     margin-top: 0;
+    margin-bottom: 3rem;
   }
 
   .hero-clients ul {
