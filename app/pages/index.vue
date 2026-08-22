@@ -24,6 +24,7 @@ const heroStats = [
 
 const heroStatsElement = ref<HTMLElement | null>(null)
 const areHeroStatsActive = ref(false)
+const areEarlierRolesVisible = ref(false)
 let heroStatsObserver: IntersectionObserver | undefined
 
 const heroContactOrder = ['GitHub', 'LinkedIn', 'Email'] as const
@@ -210,7 +211,8 @@ onBeforeUnmount(() => heroStatsObserver?.disconnect())
           </div>
         </article>
 
-        <article class="experience-entry" aria-labelledby="solit-role">
+        <div v-show="areEarlierRolesVisible" id="earlier-roles">
+          <article class="experience-entry" aria-labelledby="solit-role">
           <div class="experience-entry__meta">
             <p><span>03</span> 2020 — 2023</p>
             <p>SOLIT · Precious-metals investment</p>
@@ -233,9 +235,9 @@ onBeforeUnmount(() => heroStatsObserver?.disconnect())
               </p>
             </div>
           </div>
-        </article>
+          </article>
 
-        <article class="experience-entry" aria-labelledby="leonine-role">
+          <article class="experience-entry" aria-labelledby="leonine-role">
           <div class="experience-entry__meta">
             <p><span>04</span> 2020 — 2022</p>
             <p>LEONINE Studios · White-label video on demand</p>
@@ -259,9 +261,9 @@ onBeforeUnmount(() => heroStatsObserver?.disconnect())
               </p>
             </div>
           </div>
-        </article>
+          </article>
 
-        <article class="experience-entry" aria-labelledby="netzkino-bookwire-role">
+          <article class="experience-entry" aria-labelledby="netzkino-bookwire-role">
           <div class="experience-entry__meta">
             <p><span>05</span> 2020</p>
             <p>Netzkino &amp; Bookwire OS · Online media</p>
@@ -285,7 +287,19 @@ onBeforeUnmount(() => heroStatsObserver?.disconnect())
               </p>
             </div>
           </div>
-        </article>
+          </article>
+        </div>
+
+        <button
+          class="experience-toggle"
+          type="button"
+          aria-controls="earlier-roles"
+          :aria-expanded="areEarlierRolesVisible"
+          @click="areEarlierRolesVisible = !areEarlierRolesVisible"
+        >
+          <span>{{ areEarlierRolesVisible ? 'Show fewer roles' : 'Show 3 earlier roles' }}</span>
+          <span class="experience-toggle__icon" aria-hidden="true" />
+        </button>
 
         <ClientLogoStrip />
       </div>
@@ -734,6 +748,48 @@ h1 span {
 
 .experience-entry__description p {
   margin: 0;
+}
+
+.experience-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.35rem;
+  width: 100%;
+  min-height: 5.5rem;
+  margin-top: -1px;
+  padding: 1.5rem;
+  border: 0;
+  border-top: 1px solid var(--color-line);
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  transition: color 160ms ease, background-color 160ms ease;
+}
+
+.experience-toggle:hover {
+  background: var(--color-surface);
+  color: var(--color-accent-dark);
+}
+
+.experience-toggle__icon {
+  width: 0.7rem;
+  height: 0.7rem;
+  flex: 0 0 auto;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translateY(-0.2rem);
+  transition: transform 160ms ease;
+}
+
+.experience-toggle[aria-expanded='true'] .experience-toggle__icon {
+  transform: rotate(225deg) translateY(-0.2rem);
 }
 
 .experience-entry__highlights {
