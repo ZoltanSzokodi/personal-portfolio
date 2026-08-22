@@ -92,6 +92,38 @@ const ardPlusTechnologies = [
   'Jest',
 ] as const
 
+const solitHighlights = [
+  'Built cross-platform precious-metals investment journeys for buying, selling, and managing gold and silver products.',
+  'Delivered direct orders, order details, status tracking, trade-destination selection, and savings-plan lifecycle management.',
+  'Created portfolio and depot views with contracts, product prices, exchange rates, investment performance, and refreshed market data.',
+  'Built data visualisations for rates and investments, including line, bar, and pie charts.',
+  'Developed bank-account and IBAN management, confirmation flows, masked-input validation, and digital application and contract journeys.',
+  'Implemented authentication, registration, password recovery, MFA/2FA, biometric login, and login-problem handling.',
+  'Built customer document features: uploads, downloads, PDF viewing, broker documents, and document lists.',
+  'Developed Salesforce-driven content and configurable card-based interfaces.',
+  'Added consent and privacy controls, customer-support case creation, deep linking, and cross-platform navigation.',
+  'Supported localisation, white-label configuration, Bugsnag monitoring, React Native upgrades, and native iOS/Android compatibility work.',
+] as const
+
+const solitTechnologies = [
+  'React Native',
+  'Flow',
+  'MobX',
+  'React Navigation',
+  'Formik',
+  'REST APIs',
+  'Victory Charts',
+  'React Native PDF',
+  'React Native WebView',
+  'Bugsnag',
+  'Webpack',
+  'Jest',
+  'i18n',
+  'Android',
+  'iOS',
+  'Bitrise',
+] as const
+
 const heroStatsElement = ref<HTMLElement | null>(null)
 const areHeroStatsActive = ref(false)
 let heroStatsObserver: IntersectionObserver | undefined
@@ -260,6 +292,26 @@ onBeforeUnmount(() => heroStatsObserver?.disconnect())
 
             <ul class="experience-entry__technologies" aria-label="Technologies used at ARD Plus">
               <li v-for="technology in ardPlusTechnologies" :key="technology">{{ technology }}</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="experience-entry" aria-labelledby="solit-role">
+          <div class="experience-entry__meta">
+            <p><span>03</span> 2020 — 2021</p>
+            <p>SOLIT · Precious-metals investment</p>
+          </div>
+
+          <div class="experience-entry__content">
+            <h3 id="solit-role">Frontend Developer</h3>
+            <p class="experience-entry__platforms">Web · iOS · Android</p>
+
+            <ul class="experience-entry__highlights">
+              <li v-for="highlight in solitHighlights" :key="highlight">{{ highlight }}</li>
+            </ul>
+
+            <ul class="experience-entry__technologies" aria-label="Technologies used at SOLIT">
+              <li v-for="technology in solitTechnologies" :key="technology">{{ technology }}</li>
             </ul>
           </div>
         </article>
