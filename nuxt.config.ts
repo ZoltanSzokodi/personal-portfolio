@@ -27,6 +27,7 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    githubToken: '',
     public: {
       siteUrl: 'http://localhost:3000/',
     },

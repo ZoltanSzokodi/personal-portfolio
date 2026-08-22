@@ -9,6 +9,7 @@ export interface SiteConfig {
   fullName: string
   initials: string
   profileImage: string
+  githubUsername: string
   role: string
   description: string
   location: string

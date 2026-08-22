@@ -5,6 +5,7 @@ export const siteConfig = {
   fullName: 'Zoltan Szokodi',
   initials: 'ZS',
   profileImage: '/profile.jpg',
+  githubUsername: 'ZoltanSzokodi',
   role: 'Software engineer @ simpleTechs',
   description:
     'React Native software engineer building reliable mobile products and exploring the Vue and Nuxt ecosystem.',

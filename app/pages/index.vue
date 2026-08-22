@@ -371,6 +371,8 @@ onBeforeUnmount(() => {
           <span>{{ areEarlierRolesVisible ? 'Show fewer roles' : 'Show 3 earlier roles' }}</span>
           <span class="experience-toggle__icon" aria-hidden="true" />
         </button>
+
+        <GitHubContributionGrid :username="siteConfig.githubUsername" />
       </div>
     </section>
 
