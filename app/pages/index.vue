@@ -199,7 +199,13 @@ onBeforeUnmount(() => heroStatsObserver?.disconnect())
               <dl class="hero-stats-list">
                 <div v-for="(stat, index) in heroStats" :key="stat.label">
                   <dt>{{ stat.label }}</dt>
-                  <dd><SlotCounter :value="stat.value" :active="areHeroStatsActive" :delay="index * 140" /></dd>
+                  <dd>
+                    <SlotCounter
+                      :value="stat.value"
+                      :active="areHeroStatsActive"
+                      :delay="index * 140"
+                    />
+                  </dd>
                 </div>
               </dl>
             </div>

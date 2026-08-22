@@ -4,7 +4,6 @@ import BookwireLogo from './SVGs/BookwireLogo.vue'
 import FlexgoldLogo from './SVGs/FlexgoldLogo.vue'
 import LeonineLogo from './SVGs/LeonineLogo.vue'
 import NetzkinoLogo from './SVGs/NetzkinoLogo.vue'
-import SolitLogo from './SVGs/SolitLogo.vue'
 
 const { theme } = useTheme()
 </script>
@@ -68,8 +67,18 @@ const { theme } = useTheme()
           aria-label="Visit Solit"
           target="_blank"
           rel="noopener noreferrer"
-          ><SolitLogo class="client-logo--solit"
-        /></a>
+        >
+          <img
+            class="client-logo--solit"
+            src="/img/logo-solit.png"
+            alt=""
+            width="1220"
+            height="271"
+            loading="lazy"
+            decoding="async"
+            fetchpriority="low"
+          />
+        </a>
       </li>
     </ul>
   </div>
@@ -123,18 +132,23 @@ const { theme } = useTheme()
   text-decoration: none;
 }
 
-.hero-clients li > a > svg {
+.hero-clients li > a > :is(svg, img) {
   transition: filter 160ms ease;
 }
 
-/* Native brand colors in light mode; grayscale only this strip's SVGs in dark mode. */
-.hero-clients--dark li > a > svg:not(.client-logo-netzkino) {
+/* Native brand colors in light mode; grayscale only this strip's logos in dark mode. */
+.hero-clients--dark li > a > :is(svg, img):not(.client-logo-netzkino) {
   filter: brightness(0) invert(0.62);
 }
 
-.hero-clients--dark li > a:hover > svg:not(.client-logo-netzkino),
-.hero-clients--dark li > a:focus-visible > svg:not(.client-logo-netzkino) {
+.hero-clients--dark li > a:hover > :is(svg, img):not(.client-logo-netzkino),
+.hero-clients--dark li > a:focus-visible > :is(svg, img):not(.client-logo-netzkino) {
   filter: brightness(0) invert(0.92);
+}
+
+.client-logo--solit {
+  width: min(100%, 11rem);
+  height: auto;
 }
 
 .hero-clients--dark :deep(.client-logo-netzkino .netzkino-wordmark),
@@ -189,7 +203,7 @@ const { theme } = useTheme()
     max-width: 100%;
   }
 
-  .hero-clients li > a > svg {
+  .hero-clients li > a > :is(svg, img) {
     display: block;
     width: auto;
     max-width: 100%;
@@ -201,7 +215,8 @@ const { theme } = useTheme()
   }
 
   .hero-clients li > a > .client-logo--solit {
-    height: clamp(3rem, 10vw, 5rem);
+    width: min(100%, 9rem);
+    height: auto;
   }
 }
 </style>
