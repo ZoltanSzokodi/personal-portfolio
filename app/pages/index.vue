@@ -139,15 +139,18 @@ onBeforeUnmount(() => heroStatsObserver?.disconnect())
 
     <section
       id="experience"
-      class="section section--bordered placeholder-section"
+      class="section section--bordered experience-section"
       aria-labelledby="experience-title"
     >
       <div class="container">
-        <SectionTerminalTitle index="01" command="cd ~/experience && ls" />
+        <SectionTerminalTitle index="01" command="cd ~/experience" />
 
-        <div class="section-heading">
-          <h2 id="experience-title">Production work, distilled.</h2>
-          <p>Selected roles, responsibilities, and measurable outcomes will be added here.</p>
+        <div class="experience-intro">
+          <h2 id="experience-title">8 years of developing user interfaces for production apps.</h2>
+          <p>
+            Most recently building Flexgold and ARD Plus apps across web, iOS, Android, and TV
+            platforms.
+          </p>
         </div>
 
         <ClientLogoStrip />
@@ -512,8 +515,24 @@ h1 span {
   margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
 }
 
-.placeholder-section .section-heading {
-  margin-bottom: 0;
+.experience-intro {
+  padding-block: clamp(0.5rem, 1.5vw, 1.25rem) clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.experience-intro h2 {
+  max-width: 29ch;
+  margin: 0;
+  font-size: clamp(2.4rem, 3.8vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.07em;
+}
+
+.experience-intro p {
+  max-width: 51rem;
+  margin: clamp(1.5rem, 3vw, 2.5rem) 0 0;
+  color: var(--color-muted);
+  font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+  line-height: 1.55;
 }
 
 .section-heading h2,
