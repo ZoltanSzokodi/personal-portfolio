@@ -165,7 +165,10 @@ onBeforeUnmount(() => heroStatsObserver?.disconnect())
 
         <ClientLogoStrip />
 
-        <article class="experience-entry" aria-labelledby="flexgold-role">
+        <article
+          class="experience-entry experience-entry--timeline-start"
+          aria-labelledby="flexgold-role"
+        >
           <div class="experience-entry__meta">
             <p><span>01</span> 2023 — Present <b>• Live</b></p>
             <p>Flexgold · Fintech</p>
@@ -190,7 +193,11 @@ onBeforeUnmount(() => heroStatsObserver?.disconnect())
           </div>
         </article>
 
-        <article class="experience-entry" aria-labelledby="ardplus-role">
+        <article
+          class="experience-entry"
+          :class="{ 'experience-entry--timeline-end': !areEarlierRolesVisible }"
+          aria-labelledby="ardplus-role"
+        >
           <div class="experience-entry__meta">
             <p><span>02</span> 2021 — Present <b>• Live</b></p>
             <p>ARD Plus · Video on demand</p>
@@ -268,7 +275,11 @@ onBeforeUnmount(() => heroStatsObserver?.disconnect())
             </div>
           </article>
 
-          <article class="experience-entry" aria-labelledby="netzkino-bookwire-role">
+          <article
+            class="experience-entry"
+            :class="{ 'experience-entry--timeline-end': areEarlierRolesVisible }"
+            aria-labelledby="netzkino-bookwire-role"
+          >
             <div class="experience-entry__meta">
               <p><span>05</span> 2020</p>
               <p>Netzkino &amp; Bookwire OS · Online media</p>
@@ -694,14 +705,48 @@ h1 span {
 }
 
 .experience-entry {
+  --timeline-line: color-mix(in srgb, var(--color-accent) 45%, var(--color-line));
+  --timeline-marker-size: 1.1rem;
+
+  position: relative;
   display: grid;
   grid-template-columns: minmax(12rem, 0.32fr) minmax(0, 1fr);
   gap: clamp(2rem, 5vw, 5.5rem);
-  border-top: 1px solid var(--color-line);
   padding-block: clamp(2rem, 4vw, 3.5rem);
 }
 
+.experience-entry::before {
+  content: '';
+  width: 2px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc((var(--timeline-marker-size) / 2) - 1px);
+  background: var(--timeline-line);
+}
+
+.experience-entry--timeline-start::before {
+  background: linear-gradient(to bottom, transparent, var(--timeline-line) 1.5rem);
+}
+
+.experience-entry--timeline-end::before {
+  background: linear-gradient(to bottom, var(--timeline-line) calc(100% - 1.5rem), transparent);
+}
+
+.experience-entry::after {
+  content: '';
+  width: var(--timeline-marker-size);
+  height: var(--timeline-marker-size);
+  position: absolute;
+  top: clamp(2rem, 4vw, 3.5rem);
+  left: 0;
+  border: 2px solid var(--color-accent);
+  border-radius: 50%;
+  background: var(--color-bg);
+}
+
 .experience-entry__meta {
+  padding-left: 2rem;
   color: var(--color-muted);
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -767,10 +812,9 @@ h1 span {
   gap: 1.35rem;
   width: 100%;
   min-height: 5.5rem;
-  margin-top: -1px;
+  margin-top: 0;
   padding: 1.5rem;
   border: 0;
-  border-top: 1px solid var(--color-line);
   background: transparent;
   color: var(--color-text);
   cursor: pointer;
