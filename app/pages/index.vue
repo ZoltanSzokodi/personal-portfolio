@@ -22,108 +22,6 @@ const heroStats = [
   { value: '250+', label: 'Production releases' },
 ] as const
 
-const flexgoldHighlights = [
-  'Led cross-platform frontend architecture for Flexgold across web, iOS, and Android.',
-  'Delivered secure identity flows spanning registration, MFA/OTP, passkeys, biometrics, app PINs, and session protection.',
-  'Built backend-configurable screens, dynamic forms, multi-step workflows, validation, autosave, and resilient error recovery.',
-  'Shipped core fintech journeys for gold vaults, savings plans, product and delivery orders, pricing, and bank transfers.',
-  'Created portfolio dashboards with balances, performance insights, premium status, live data updates, and chart visualisations.',
-  'Developed customer engagement features including referrals, sharing, feedback prompts, notifications, PDF actions, and in-app alerts.',
-  'Improved accessibility across reusable controls, forms, loading states, and navigation, aligned with Germany’s Barrierefreiheitsstärkungsgesetz (BFSG) requirements.',
-  'Implemented privacy-aware user tracking, analytics preferences, consent controls, and cookie settings.',
-  'Integrated multilingual chatbot experiences across native and web-based surfaces.',
-] as const
-
-const flexgoldTechnologies = [
-  'React Native',
-  'TypeScript',
-  'React Navigation',
-  'Redux Toolkit',
-  'RTK Query',
-  'Formik',
-  'Jexl',
-  'React Native Paper (MD3)',
-  'WebAuthn / Passkeys',
-  'Firebase',
-  'React Native Reanimated',
-  'Lottie',
-  'Victory Charts',
-  'Storybook',
-  'Jest',
-  'i18next',
-  'REST APIs',
-  'Accessibility',
-  'Bitbucket Pipelines',
-] as const
-
-const ardPlusHighlights = [
-  'Built video-on-demand playback across web, mobile, and TV, including playback authorisation, DRM-compatible delivery, Android picture-in-picture, and casting.',
-  'Delivered content-discovery journeys: browse screens, categories, content cards, sliders, and movie-detail views.',
-  'Created TV-first experiences for Android TV, Fire TV, Chromecast, WebOS, and Tizen.',
-  'Developed Chromecast receiver and player functionality.',
-  'Built authentication and account journeys: registration, login, email verification, password reset, and account navigation.',
-  'Implemented entitlement-aware access, membership gating, subscription plans, browse-only states, and SVOD, TVOD, and EST purchase flows.',
-  'Delivered checkout and payment flows with Stripe, PayPal, Apple Pay, Google Pay, vouchers, terms acceptance, payment states, redirects, and post-purchase content access.',
-  'Built privacy controls, multi-brand configuration, feature flags, themes, localisation, GraphQL data integrations, and playback/purchase tracking.',
-  'Added responsive web, mobile, and TV navigation, UI motion, purchase modals, and focused E2E coverage for Android TV, Android, and iOS.',
-] as const
-
-const ardPlusTechnologies = [
-  'React Native',
-  'TypeScript',
-  'Next.js',
-  'GraphQL',
-  'Apollo Client',
-  'Google Cast / Chromecast',
-  'AirPlay',
-  'Android TV',
-  'Fire TV',
-  'WebOS',
-  'Tizen',
-  'Stripe',
-  'PayPal',
-  'Apple Pay',
-  'Google Pay',
-  'In-App Purchases',
-  'Lottie',
-  'i18next',
-  'Detox',
-  'Cypress',
-  'Jest',
-] as const
-
-const solitHighlights = [
-  'Built cross-platform precious-metals investment journeys for buying, selling, and managing gold and silver products.',
-  'Delivered direct orders, order details, status tracking, trade-destination selection, and savings-plan lifecycle management.',
-  'Created portfolio and depot views with contracts, product prices, exchange rates, investment performance, and refreshed market data.',
-  'Built data visualisations for rates and investments, including line, bar, and pie charts.',
-  'Developed bank-account and IBAN management, confirmation flows, masked-input validation, and digital application and contract journeys.',
-  'Implemented authentication, registration, password recovery, MFA/2FA, biometric login, and login-problem handling.',
-  'Built customer document features: uploads, downloads, PDF viewing, broker documents, and document lists.',
-  'Developed Salesforce-driven content and configurable card-based interfaces.',
-  'Added consent and privacy controls, customer-support case creation, deep linking, and cross-platform navigation.',
-  'Supported localisation, white-label configuration, Bugsnag monitoring, React Native upgrades, and native iOS/Android compatibility work.',
-] as const
-
-const solitTechnologies = [
-  'React Native',
-  'Flow',
-  'MobX',
-  'React Navigation',
-  'Formik',
-  'REST APIs',
-  'Victory Charts',
-  'React Native PDF',
-  'React Native WebView',
-  'Bugsnag',
-  'Webpack',
-  'Jest',
-  'i18n',
-  'Android',
-  'iOS',
-  'Bitrise',
-] as const
-
 const heroStatsElement = ref<HTMLElement | null>(null)
 const areHeroStatsActive = ref(false)
 let heroStatsObserver: IntersectionObserver | undefined
@@ -271,14 +169,18 @@ onBeforeUnmount(() => heroStatsObserver?.disconnect())
             <h3 id="flexgold-role">Lead Frontend Architect</h3>
             <p class="experience-entry__platforms">Web · iOS · Android</p>
 
-            <ul class="experience-entry__highlights">
-              <li v-for="highlight in flexgoldHighlights" :key="highlight">{{ highlight }}</li>
-            </ul>
-            <p class="experience-entry__more">…and much more.</p>
-
-            <ul class="experience-entry__technologies" aria-label="Technologies used at Flexgold">
-              <li v-for="technology in flexgoldTechnologies" :key="technology">{{ technology }}</li>
-            </ul>
+            <div class="experience-entry__description">
+              <p>
+                Flexgold is a digital platform for investing in and managing physical precious
+                metals. It enables customers to buy, sell, save, and track gold and other metals at
+                live prices, with assets securely stored in Switzerland.
+              </p>
+              <p>
+                I designed and coordinated the frontend architecture and delivery for Flexgold
+                across web, iOS, and Android, while building the UI for a scalable, consistent
+                investment experience.
+              </p>
+            </div>
           </div>
         </article>
 
@@ -292,19 +194,25 @@ onBeforeUnmount(() => heroStatsObserver?.disconnect())
             <h3 id="ardplus-role">Frontend Engineer</h3>
             <p class="experience-entry__platforms">Web · iOS · Android · Smart TV</p>
 
-            <ul class="experience-entry__highlights">
-              <li v-for="highlight in ardPlusHighlights" :key="highlight">{{ highlight }}</li>
-            </ul>
-
-            <ul class="experience-entry__technologies" aria-label="Technologies used at ARD Plus">
-              <li v-for="technology in ardPlusTechnologies" :key="technology">{{ technology }}</li>
-            </ul>
+            <div class="experience-entry__description">
+              <p>
+                ARD Plus is a subscription video-on-demand service from ARD, offering a curated
+                collection of films, series, documentaries, shows, and children’s content across
+                web, mobile, and TV platforms. It brings together ARD programming that is no longer
+                available in the free ARD Mediathek.
+              </p>
+              <p>
+                As a frontend engineer, I contributed to and coordinated frontend delivery across
+                web, mobile, and connected-TV platforms, building a scalable streaming experience
+                spanning discovery, playback, accounts, and subscriptions.
+              </p>
+            </div>
           </div>
         </article>
 
         <article class="experience-entry" aria-labelledby="solit-role">
           <div class="experience-entry__meta">
-            <p><span>03</span> 2020 — 2021</p>
+            <p><span>03</span> 2020 — 2023</p>
             <p>SOLIT · Precious-metals investment</p>
           </div>
 
@@ -312,13 +220,70 @@ onBeforeUnmount(() => heroStatsObserver?.disconnect())
             <h3 id="solit-role">Frontend Developer</h3>
             <p class="experience-entry__platforms">Web · iOS · Android</p>
 
-            <ul class="experience-entry__highlights">
-              <li v-for="highlight in solitHighlights" :key="highlight">{{ highlight }}</li>
-            </ul>
+            <div class="experience-entry__description">
+              <p>
+                The SOLIT app gives precious-metals investors a central place to follow market
+                prices, access relevant news, and monitor and manage their holdings, savings
+                plans, contracts, and transactions.
+              </p>
+              <p>
+                As a frontend engineer, I helped develop its cross-platform app experience,
+                translating complex investment, account, and service processes into clear,
+                dependable digital journeys.
+              </p>
+            </div>
+          </div>
+        </article>
 
-            <ul class="experience-entry__technologies" aria-label="Technologies used at SOLIT">
-              <li v-for="technology in solitTechnologies" :key="technology">{{ technology }}</li>
-            </ul>
+        <article class="experience-entry" aria-labelledby="leonine-role">
+          <div class="experience-entry__meta">
+            <p><span>04</span> 2020 — 2022</p>
+            <p>LEONINE Studios · White-label video on demand</p>
+          </div>
+
+          <div class="experience-entry__content">
+            <h3 id="leonine-role">Frontend Developer</h3>
+            <p class="experience-entry__platforms">Web · iOS · Android · Smart TV</p>
+
+            <div class="experience-entry__description">
+              <p>
+                LEONINE Studios, Germany’s leading independent media company, launched Home of
+                Horror, Filmtastic, and Arthouse CNMA as genre-focused subscription streaming
+                services for horror, mainstream cinema, and arthouse film.
+              </p>
+              <p>
+                As a frontend developer, I worked on the white-label VOD platform behind these
+                apps, enabling multiple branded streaming products to share a reusable,
+                cross-platform foundation while retaining their individual identity and content
+                experience.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="experience-entry" aria-labelledby="netzkino-bookwire-role">
+          <div class="experience-entry__meta">
+            <p><span>05</span> 2020</p>
+            <p>Netzkino &amp; Bookwire OS · Online media</p>
+          </div>
+
+          <div class="experience-entry__content">
+            <h3 id="netzkino-bookwire-role">Junior JavaScript Developer</h3>
+            <p class="experience-entry__platforms">Web</p>
+
+            <div class="experience-entry__description">
+              <p>
+                I contributed frontend features to two established online-media platforms:
+                Netzkino, a free, ad-supported film-streaming service, and Bookwire OS, the
+                platform publishers use to bring digital titles to market and track their
+                performance.
+              </p>
+              <p>
+                Across both products, I helped make content-rich experiences feel fast and
+                intuitive—from discovering films to managing global ebook and audiobook
+                catalogues.
+              </p>
+            </div>
           </div>
         </article>
 
@@ -756,6 +721,19 @@ h1 span {
   margin: 0.55rem 0 0;
   color: var(--color-muted);
   font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+}
+
+.experience-entry__description {
+  display: grid;
+  gap: 1rem;
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+  color: var(--color-muted);
+  font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+  line-height: 1.45;
+}
+
+.experience-entry__description p {
+  margin: 0;
 }
 
 .experience-entry__highlights {
