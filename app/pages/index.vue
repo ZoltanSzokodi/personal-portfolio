@@ -153,12 +153,17 @@ onBeforeUnmount(() => heroStatsObserver?.disconnect())
         <SectionTerminalTitle index="01" command="cd ~/experience" />
 
         <div class="experience-intro">
-          <h2 id="experience-title">8 years of developing user interfaces for production apps.</h2>
+          <h2 id="experience-title">
+            8 years of developing user interfaces for production apps with
+            <span>simpleTechs.</span>
+          </h2>
           <p>
             Most recently building Flexgold and ARD Plus apps across web, iOS, Android, and TV
             platforms.
           </p>
         </div>
+
+        <ClientLogoStrip />
 
         <article class="experience-entry" aria-labelledby="flexgold-role">
           <div class="experience-entry__meta">
@@ -213,80 +218,80 @@ onBeforeUnmount(() => heroStatsObserver?.disconnect())
 
         <div v-show="areEarlierRolesVisible" id="earlier-roles">
           <article class="experience-entry" aria-labelledby="solit-role">
-          <div class="experience-entry__meta">
-            <p><span>03</span> 2020 — 2023</p>
-            <p>SOLIT · Precious-metals investment</p>
-          </div>
-
-          <div class="experience-entry__content">
-            <h3 id="solit-role">Frontend Developer</h3>
-            <p class="experience-entry__platforms">Web · iOS · Android</p>
-
-            <div class="experience-entry__description">
-              <p>
-                The SOLIT app gives precious-metals investors a central place to follow market
-                prices, access relevant news, and monitor and manage their holdings, savings
-                plans, contracts, and transactions.
-              </p>
-              <p>
-                As a frontend engineer, I helped develop its cross-platform app experience,
-                translating complex investment, account, and service processes into clear,
-                dependable digital journeys.
-              </p>
+            <div class="experience-entry__meta">
+              <p><span>03</span> 2020 — 2023</p>
+              <p>SOLIT · Precious-metals investment</p>
             </div>
-          </div>
+
+            <div class="experience-entry__content">
+              <h3 id="solit-role">Frontend Developer</h3>
+              <p class="experience-entry__platforms">Web · iOS · Android</p>
+
+              <div class="experience-entry__description">
+                <p>
+                  The SOLIT app gives precious-metals investors a central place to follow market
+                  prices, access relevant news, and monitor and manage their holdings, savings
+                  plans, contracts, and transactions.
+                </p>
+                <p>
+                  As a frontend engineer, I helped develop its cross-platform app experience,
+                  translating complex investment, account, and service processes into clear,
+                  dependable digital journeys.
+                </p>
+              </div>
+            </div>
           </article>
 
           <article class="experience-entry" aria-labelledby="leonine-role">
-          <div class="experience-entry__meta">
-            <p><span>04</span> 2020 — 2022</p>
-            <p>LEONINE Studios · White-label video on demand</p>
-          </div>
-
-          <div class="experience-entry__content">
-            <h3 id="leonine-role">Frontend Developer</h3>
-            <p class="experience-entry__platforms">Web · iOS · Android · Smart TV</p>
-
-            <div class="experience-entry__description">
-              <p>
-                LEONINE Studios, Germany’s leading independent media company, launched Home of
-                Horror, Filmtastic, and Arthouse CNMA as genre-focused subscription streaming
-                services for horror, mainstream cinema, and arthouse film.
-              </p>
-              <p>
-                As a frontend developer, I worked on the white-label VOD platform behind these
-                apps, enabling multiple branded streaming products to share a reusable,
-                cross-platform foundation while retaining their individual identity and content
-                experience.
-              </p>
+            <div class="experience-entry__meta">
+              <p><span>04</span> 2020 — 2022</p>
+              <p>LEONINE Studios · White-label video on demand</p>
             </div>
-          </div>
+
+            <div class="experience-entry__content">
+              <h3 id="leonine-role">Frontend Developer</h3>
+              <p class="experience-entry__platforms">Web · iOS · Android · Smart TV</p>
+
+              <div class="experience-entry__description">
+                <p>
+                  LEONINE Studios, Germany’s leading independent media company, launched Home of
+                  Horror, Filmtastic, and Arthouse CNMA as genre-focused subscription streaming
+                  services for horror, mainstream cinema, and arthouse film.
+                </p>
+                <p>
+                  As a frontend developer, I worked on the white-label VOD platform behind these
+                  apps, enabling multiple branded streaming products to share a reusable,
+                  cross-platform foundation while retaining their individual identity and content
+                  experience.
+                </p>
+              </div>
+            </div>
           </article>
 
           <article class="experience-entry" aria-labelledby="netzkino-bookwire-role">
-          <div class="experience-entry__meta">
-            <p><span>05</span> 2020</p>
-            <p>Netzkino &amp; Bookwire OS · Online media</p>
-          </div>
-
-          <div class="experience-entry__content">
-            <h3 id="netzkino-bookwire-role">Junior JavaScript Developer</h3>
-            <p class="experience-entry__platforms">Web</p>
-
-            <div class="experience-entry__description">
-              <p>
-                I contributed frontend features to two established online-media platforms:
-                Netzkino, a free, ad-supported film-streaming service, and Bookwire OS, the
-                platform publishers use to bring digital titles to market and track their
-                performance.
-              </p>
-              <p>
-                Across both products, I helped make content-rich experiences feel fast and
-                intuitive—from discovering films to managing global ebook and audiobook
-                catalogues.
-              </p>
+            <div class="experience-entry__meta">
+              <p><span>05</span> 2020</p>
+              <p>Netzkino &amp; Bookwire OS · Online media</p>
             </div>
-          </div>
+
+            <div class="experience-entry__content">
+              <h3 id="netzkino-bookwire-role">Junior JavaScript Developer</h3>
+              <p class="experience-entry__platforms">Web</p>
+
+              <div class="experience-entry__description">
+                <p>
+                  I contributed frontend features to two established online-media platforms:
+                  Netzkino, a free, ad-supported film-streaming service, and Bookwire OS, the
+                  platform publishers use to bring digital titles to market and track their
+                  performance.
+                </p>
+                <p>
+                  Across both products, I helped make content-rich experiences feel fast and
+                  intuitive—from discovering films to managing global ebook and audiobook
+                  catalogues.
+                </p>
+              </div>
+            </div>
           </article>
         </div>
 
@@ -300,8 +305,6 @@ onBeforeUnmount(() => heroStatsObserver?.disconnect())
           <span>{{ areEarlierRolesVisible ? 'Show fewer roles' : 'Show 3 earlier roles' }}</span>
           <span class="experience-toggle__icon" aria-hidden="true" />
         </button>
-
-        <ClientLogoStrip />
       </div>
     </section>
 
@@ -675,6 +678,13 @@ h1 span {
   letter-spacing: -0.07em;
 }
 
+.experience-intro h2 span {
+  display: inline-block;
+  padding: 0.02em 0.16em 0.08em;
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
 .experience-intro p {
   max-width: 51rem;
   margin: clamp(1.5rem, 3vw, 2.5rem) 0 0;
@@ -770,7 +780,9 @@ h1 span {
   letter-spacing: 0.24em;
   line-height: 1.2;
   text-transform: uppercase;
-  transition: color 160ms ease, background-color 160ms ease;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease;
 }
 
 .experience-toggle:hover {

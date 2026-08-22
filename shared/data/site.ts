@@ -5,10 +5,10 @@ export const siteConfig = {
   fullName: 'Zoltan Szokodi',
   initials: 'ZS',
   profileImage: '/profile.jpg',
-  role: 'Software engineer · React Native',
+  role: 'Software engineer @ simpleTechs',
   description:
     'React Native software engineer building reliable mobile products and exploring the Vue and Nuxt ecosystem.',
-  location: 'Your location',
+  location: 'Germany 🇩🇪',
   availability: 'Open for hire',
   contacts: [
     {
