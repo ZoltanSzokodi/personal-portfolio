@@ -2,6 +2,7 @@
 import ArdPlusLogo from './SVGs/ArdPlusLogo.vue'
 import BookwireLogo from './SVGs/BookwireLogo.vue'
 import FlexgoldLogo from './SVGs/FlexgoldLogo.vue'
+import FlexgoldLogoNegative from './SVGs/FlexgoldLogoNegative.vue'
 import LeonineLogo from './SVGs/LeonineLogo.vue'
 import NetzkinoLogo from './SVGs/NetzkinoLogo.vue'
 
@@ -40,8 +41,11 @@ const { theme } = useTheme()
           aria-label="Visit Flexgold"
           target="_blank"
           rel="noopener noreferrer"
-          ><FlexgoldLogo class="client-logo--flexgold"
-        /></a>
+          ><component
+            :is="theme === 'dark' ? FlexgoldLogoNegative : FlexgoldLogo"
+            class="client-logo--flexgold"
+          />
+        </a>
       </li>
       <li>
         <a
@@ -144,12 +148,21 @@ const { theme } = useTheme()
 
 .hero-clients--dark li > a:hover > :is(svg, img):not(.client-logo-netzkino),
 .hero-clients--dark li > a:focus-visible > :is(svg, img):not(.client-logo-netzkino) {
-  filter: brightness(0) invert(0.92);
+  filter: none;
+}
+
+.hero-clients--dark li > a:hover :deep(.client-logo--leonine),
+.hero-clients--dark li > a:focus-visible :deep(.client-logo--leonine) {
+  filter: brightness(0) invert(1) !important;
 }
 
 .client-logo--solit {
   width: min(100%, 11rem);
   height: auto;
+}
+
+.client-logo--flexgold {
+  transform: scale(1.18);
 }
 
 .hero-clients--dark :deep(.client-logo-netzkino .netzkino-wordmark),
@@ -177,11 +190,30 @@ const { theme } = useTheme()
   fill: #101714;
 }
 
-.hero-clients--dark li > a:hover :deep(.client-logo-netzkino .netzkino-wordmark),
-.hero-clients--dark li > a:hover :deep(.client-logo-netzkino .netzkino-badge-shell),
-.hero-clients--dark li > a:focus-visible :deep(.client-logo-netzkino .netzkino-wordmark),
-.hero-clients--dark li > a:focus-visible :deep(.client-logo-netzkino .netzkino-badge-shell) {
-  fill: #ebebeb;
+.hero-clients--dark li > a:is(:hover, :focus-visible) :deep(.client-logo-netzkino .netzkino-wordmark) {
+  fill: #fff;
+}
+
+.hero-clients--dark li > a:is(:hover, :focus-visible) :deep(.client-logo-netzkino .netzkino-badge-number) {
+  fill: #000;
+}
+
+.hero-clients--dark li > a:is(:hover, :focus-visible) :deep(.client-logo-netzkino .netzkino-badge-shell),
+.hero-clients--dark li > a:is(:hover, :focus-visible) :deep(.client-logo-netzkino .netzkino-badge-number-outline) {
+  fill: #fff;
+  stroke: #fff;
+}
+
+.hero-clients--dark li > a:is(:hover, :focus-visible) :deep(.client-logo-netzkino .netzkino-badge-surface) {
+  fill: #69abe7;
+}
+
+.hero-clients--dark li > a:is(:hover, :focus-visible) :deep(.client-logo-netzkino .netzkino-badge-map) {
+  fill: #6799c7;
+}
+
+.hero-clients--dark li > a:is(:hover, :focus-visible) :deep(.client-logo-netzkino .netzkino-badge-grid) {
+  stroke: #297199;
 }
 
 @media (max-width: 60rem) {
