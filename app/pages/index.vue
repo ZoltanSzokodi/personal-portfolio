@@ -372,7 +372,12 @@ onBeforeUnmount(() => {
           <span class="experience-toggle__icon" aria-hidden="true" />
         </button>
 
-        <GitHubContributionGrid :username="siteConfig.githubUsername" />
+        <div class="experience-contributions">
+          <p class="experience-contributions__label">
+            <span aria-hidden="true" /> Production app contributions
+          </p>
+          <GitHubContributionGrid :username="siteConfig.githubUsername" />
+        </div>
       </div>
     </section>
 
@@ -935,6 +940,31 @@ h1 span {
 
 .experience-toggle[aria-expanded='true'] .experience-toggle__icon {
   transform: rotate(225deg) translateY(-0.2rem);
+}
+
+.experience-contributions {
+  margin-top: clamp(4rem, 8vw, 7rem);
+}
+
+.experience-contributions__label {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0;
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.experience-contributions__label span {
+  width: 0.4rem;
+  height: 0.4rem;
+  flex: 0 0 0.4rem;
+  border-radius: 50%;
+  background: var(--color-accent);
 }
 
 .experience-entry__highlights {

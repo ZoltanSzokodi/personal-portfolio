@@ -70,27 +70,28 @@ const contributionLabel = (day: ContributionDay) => {
     </div>
 
     <div v-if="calendar" class="contribution-grid__scroll">
-      <div class="contribution-grid__months" aria-hidden="true">
-        <span
-          v-for="month in calendar.months"
-          :key="`${month.name}-${month.totalWeeks}`"
-          :style="{ gridColumn: `span ${month.totalWeeks}` }"
-        >
-          {{ month.name }}
-        </span>
-      </div>
+      <div class="contribution-grid__plot">
+        <div class="contribution-grid__months" aria-hidden="true">
+          <span
+            v-for="month in calendar.months"
+            :key="`${month.name}-${month.totalWeeks}`"
+            :style="{ gridColumn: `span ${month.totalWeeks}` }"
+          >
+            {{ month.name }}
+          </span>
+        </div>
 
-      <div
-        class="contribution-grid__calendar"
-        role="grid"
-        aria-label="GitHub contributions over the last year"
-      >
         <div
-          v-for="(week, weekIndex) in calendar.weeks"
-          :key="weekIndex"
-          class="contribution-grid__week"
-          role="row"
+          class="contribution-grid__calendar"
+          role="grid"
+          aria-label="GitHub contributions over the last year"
         >
+          <div
+            v-for="(week, weekIndex) in calendar.weeks"
+            :key="weekIndex"
+            class="contribution-grid__week"
+            role="row"
+          >
           <span
             v-for="day in week.contributionDays"
             :key="day.date"
@@ -100,6 +101,7 @@ const contributionLabel = (day: ContributionDay) => {
             :aria-label="contributionLabel(day)"
             :title="contributionLabel(day)"
           />
+          </div>
         </div>
       </div>
     </div>
@@ -107,21 +109,23 @@ const contributionLabel = (day: ContributionDay) => {
     <p v-else-if="status === 'pending'" class="contribution-grid__status">Loading activity…</p>
     <p v-else class="contribution-grid__status">GitHub activity is temporarily unavailable.</p>
 
-    <div
-      v-if="calendar"
-      class="contribution-grid__legend"
-      aria-label="Contribution intensity legend"
-    >
-      <span>Less</span>
-      <i v-for="level in 5" :key="level" :class="`contribution-grid__day--level-${level - 1}`" />
-      <span>More</span>
+    <div v-if="calendar" class="contribution-grid__footer">
+      <p class="contribution-grid__note">Parental leave · September 2025–January 2026</p>
+
+      <div class="contribution-grid__legend" aria-label="Contribution intensity legend">
+        <span>Less</span>
+        <i v-for="level in 5" :key="level" :class="`contribution-grid__day--level-${level - 1}`" />
+        <span>More</span>
+      </div>
     </div>
   </section>
 </template>
 
 <style scoped lang="scss">
 .contribution-grid {
-  margin-top: clamp(4rem, 8vw, 7rem);
+  width: min(100%, 72rem);
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+  margin-inline: auto;
   padding: clamp(1.25rem, 3vw, 2.25rem);
   border: 1px solid var(--color-line);
   border-radius: 1.25rem;
@@ -173,6 +177,11 @@ const contributionLabel = (day: ContributionDay) => {
   padding-bottom: 0.35rem;
 }
 
+.contribution-grid__plot {
+  width: max-content;
+  margin-inline: auto;
+}
+
 .contribution-grid__months,
 .contribution-grid__calendar {
   width: max-content;
@@ -219,21 +228,35 @@ const contributionLabel = (day: ContributionDay) => {
   background: var(--color-accent);
 }
 
-.contribution-grid__legend {
+.contribution-grid__footer {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 0.35rem;
+  justify-content: space-between;
+  gap: 1.5rem;
   margin-top: 1.25rem;
+}
+
+.contribution-grid__note,
+.contribution-grid__legend {
+  margin: 0;
   color: var(--color-muted);
   font-family: var(--font-mono);
   font-size: 0.65rem;
+}
+
+.contribution-grid__legend {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 
 .contribution-grid__legend i {
   width: 0.78rem;
   height: 0.78rem;
   border-radius: 0.16rem;
+}
+
+.contribution-grid__legend i.contribution-grid__day--level-0 {
   background: var(--color-line-soft);
 }
 
@@ -252,6 +275,17 @@ const contributionLabel = (day: ContributionDay) => {
     align-items: flex-start;
     flex-direction: column;
     gap: 0.8rem;
+  }
+
+  .contribution-grid__scroll {
+    .contribution-grid__plot {
+      margin-inline: 0;
+    }
+  }
+
+  .contribution-grid__footer {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
 </style>
