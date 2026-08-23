@@ -102,7 +102,9 @@ onMounted(() => {
     }
 
     experienceCards.forEach((card) => {
-      card.classList.toggle('experience-entry__content--active', card === closestCard)
+      const isActive = card === closestCard
+      card.classList.toggle('experience-entry__content--active', isActive)
+      card.closest('.experience-entry')?.classList.toggle('experience-entry--active', isActive)
     })
   }
 
@@ -805,6 +807,19 @@ h1 span {
   border: 2px solid var(--color-accent);
   border-radius: 50%;
   background: var(--color-bg);
+  box-shadow: 0 0 0 0 transparent;
+  transition:
+    background-color 240ms ease,
+    box-shadow 240ms ease,
+    transform 240ms ease;
+}
+
+.experience-entry--active::after {
+  background: var(--color-accent);
+  box-shadow:
+    0 0 0.7rem color-mix(in srgb, var(--color-accent) 46%, transparent),
+    0 0 1.65rem color-mix(in srgb, var(--color-accent) 22%, transparent),
+    0 0 2.6rem color-mix(in srgb, var(--color-accent) 8%, transparent);
 }
 
 .experience-entry__meta {
