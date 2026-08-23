@@ -3,6 +3,7 @@ interface ContributionDay {
   contributionCount: number
   date: string
   weekday: number
+  isOutsideSelectedYear?: boolean
 }
 
 interface ContributionCalendar {
@@ -21,6 +22,66 @@ interface ContributionData {
   years: number[]
 }
 
+const toDateKey = (date: Date) => date.toISOString().slice(0, 10)
+
+const extendCalendarToYearEnd = (calendar: ContributionCalendar, year: number): ContributionCalendar => {
+  const countsByDate = new Map<string, number>(
+    calendar.weeks
+      .flatMap((week) => week.contributionDays)
+      .map((day) => [day.date, day.contributionCount]),
+  )
+  const yearStart = new Date(Date.UTC(year, 0, 1))
+  const yearEnd = new Date(Date.UTC(year, 11, 31))
+  const gridStart = new Date(yearStart)
+  const gridEnd = new Date(yearEnd)
+
+  gridStart.setUTCDate(gridStart.getUTCDate() - gridStart.getUTCDay())
+  gridEnd.setUTCDate(gridEnd.getUTCDate() + (6 - gridEnd.getUTCDay()))
+
+  const weeks: ContributionCalendar['weeks'] = []
+  const cursor = new Date(gridStart)
+
+  while (cursor <= gridEnd) {
+    weeks.push({
+      contributionDays: Array.from({ length: 7 }, () => {
+        const day = new Date(cursor)
+        cursor.setUTCDate(cursor.getUTCDate() + 1)
+
+        return {
+          contributionCount: countsByDate.get(toDateKey(day)) ?? 0,
+          date: toDateKey(day),
+          weekday: day.getUTCDay(),
+          isOutsideSelectedYear: day < yearStart || day > yearEnd,
+        }
+      }),
+    })
+  }
+
+  const monthFormatter = new Intl.DateTimeFormat('en', { month: 'short', timeZone: 'UTC' })
+  const weeksPerMonth = new Map<number, number>()
+
+  weeks.forEach((week) => {
+    const firstDayInYear = week.contributionDays.find((day) => {
+      const date = new Date(`${day.date}T00:00:00Z`)
+      return date >= yearStart && date <= yearEnd
+    })
+
+    if (!firstDayInYear) return
+
+    const month = new Date(`${firstDayInYear.date}T00:00:00Z`).getUTCMonth()
+    weeksPerMonth.set(month, (weeksPerMonth.get(month) ?? 0) + 1)
+  })
+
+  return {
+    totalContributions: calendar.totalContributions,
+    months: [...weeksPerMonth].map(([month, totalWeeks]) => ({
+      name: monthFormatter.format(new Date(Date.UTC(year, month, 1))),
+      totalWeeks,
+    })),
+    weeks,
+  }
+}
+
 const props = defineProps<{
   username: string
 }>()
@@ -36,7 +97,11 @@ const { data, status } = useFetch<ContributionData>(
   },
 )
 
-const calendar = computed(() => data.value?.calendar)
+const calendar = computed(() => {
+  if (!data.value?.calendar) return undefined
+
+  return extendCalendarToYearEnd(data.value.calendar, selectedYear.value)
+})
 const years = computed(() => data.value?.years ?? [])
 const yearsInDisplayOrder = computed(() => [...years.value].reverse())
 
@@ -122,10 +187,14 @@ const contributionLabel = (day: ContributionDay) => {
             v-for="day in week.contributionDays"
             :key="day.date"
             class="contribution-grid__day"
-            :class="`contribution-grid__day--level-${contributionLevel(day.contributionCount)}`"
+            :class="[
+              `contribution-grid__day--level-${contributionLevel(day.contributionCount)}`,
+              { 'contribution-grid__day--outside-year': day.isOutsideSelectedYear },
+            ]"
             role="gridcell"
-            :aria-label="contributionLabel(day)"
-            :title="contributionLabel(day)"
+            :aria-hidden="day.isOutsideSelectedYear || undefined"
+            :aria-label="day.isOutsideSelectedYear ? undefined : contributionLabel(day)"
+            :title="day.isOutsideSelectedYear ? undefined : contributionLabel(day)"
           />
           </div>
         </div>
@@ -283,6 +352,10 @@ const contributionLabel = (day: ContributionDay) => {
 
 .contribution-grid__day--level-4 {
   background: var(--color-accent);
+}
+
+.contribution-grid__day--outside-year {
+  background: transparent;
 }
 
 .contribution-grid__footer {
