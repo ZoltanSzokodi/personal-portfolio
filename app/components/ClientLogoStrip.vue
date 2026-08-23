@@ -151,6 +151,10 @@ const { theme } = useTheme()
   filter: none;
 }
 
+.hero-clients--dark li > a:is(:hover, :focus-visible) :deep(.client-logo--ardplus .ardplus-ard-one) {
+  fill: #fff;
+}
+
 .hero-clients--dark li > a:hover :deep(.client-logo--leonine),
 .hero-clients--dark li > a:focus-visible :deep(.client-logo--leonine) {
   filter: brightness(0) invert(1) !important;
