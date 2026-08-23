@@ -1136,14 +1136,14 @@ h1 span {
 
   .experience-entry {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.25rem;
+    padding-left: clamp(2rem, 6vw, 3rem);
   }
 
   .experience-entry__meta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 0.75rem 1.5rem;
+    display: grid;
+    gap: 0.3rem;
+    padding-left: 0;
   }
 
   .experience-entry__meta p + p {
