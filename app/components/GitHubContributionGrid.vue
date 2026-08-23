@@ -16,16 +16,29 @@ interface ContributionCalendar {
   }>
 }
 
+interface ContributionData {
+  calendar: ContributionCalendar
+  years: number[]
+}
+
 const props = defineProps<{
   username: string
 }>()
 
-const { data: calendar, status } = await useFetch<ContributionCalendar>(
+const selectedYear = ref(new Date().getFullYear())
+
+const { data, status } = useFetch<ContributionData>(
   '/api/github-contributions',
   {
     server: false,
+    query: { year: selectedYear },
+    watch: [selectedYear],
   },
 )
+
+const calendar = computed(() => data.value?.calendar)
+const years = computed(() => data.value?.years ?? [])
+const yearsInDisplayOrder = computed(() => [...years.value].reverse())
 
 const highestContributionCount = computed(() => {
   const counts = calendar.value?.weeks.flatMap((week) =>
@@ -58,15 +71,28 @@ const contributionLabel = (day: ContributionDay) => {
         <p class="contribution-grid__eyebrow">GitHub activity</p>
         <h3 id="contribution-title">
           <template v-if="calendar">
-            {{ calendar.totalContributions.toLocaleString() }} contributions in the last year
+            {{ calendar.totalContributions.toLocaleString() }} contributions in {{ selectedYear }}
           </template>
-          <template v-else>Contributions in the last year</template>
+          <template v-else>Contributions</template>
         </h3>
       </div>
 
       <a :href="`https://github.com/${props.username}`" target="_blank" rel="noopener noreferrer">
         @{{ props.username }} <span aria-hidden="true">↗</span>
       </a>
+    </div>
+
+    <div v-if="yearsInDisplayOrder.length" class="contribution-grid__years" aria-label="Contribution years">
+      <button
+        v-for="year in yearsInDisplayOrder"
+        :key="year"
+        type="button"
+        :class="{ 'contribution-grid__year--active': year === selectedYear }"
+        :aria-pressed="year === selectedYear"
+        @click="selectedYear = year"
+      >
+        {{ year }}
+      </button>
     </div>
 
     <div v-if="calendar" class="contribution-grid__scroll">
@@ -168,6 +194,37 @@ const contributionLabel = (day: ContributionDay) => {
 }
 
 .contribution-grid__heading a:hover {
+  color: var(--color-accent-dark);
+}
+
+.contribution-grid__years {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.2rem;
+}
+
+.contribution-grid__years button {
+  flex: 0 0 auto;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--color-line);
+  border-radius: 0.4rem;
+  background: transparent;
+  color: var(--color-muted);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+.contribution-grid__years button:hover,
+.contribution-grid__years button:focus-visible,
+.contribution-grid__years .contribution-grid__year--active {
+  border-color: var(--color-accent-dark);
+  background: color-mix(in srgb, var(--color-accent) 13%, transparent);
   color: var(--color-accent-dark);
 }
 
