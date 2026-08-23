@@ -209,7 +209,7 @@ onBeforeUnmount(() => {
 
         <div class="experience-intro">
           <h2 id="experience-title">
-            8 years of developing user interfaces for production apps with
+            <span>8 years of</span> developing user interfaces for production apps with
             <span>simpleTechs.</span>
           </h2>
           <p>
